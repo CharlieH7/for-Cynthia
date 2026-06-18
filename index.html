@@ -1,1 +1,251 @@
-<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>To Cynthia</title><style>body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'PingFang TC','Microsoft JhengHei',sans-serif;background:linear-gradient(135deg,#fbf4ff,#eadfff,#fff7fb);color:#35234f}.wrap{max-width:820px;margin:auto;padding:24px 16px 60px}.hero{min-height:100vh;display:grid;place-items:center;text-align:center}.card{background:rgba(255,255,255,.85);border-radius:30px;padding:30px 20px;box-shadow:0 22px 60px rgba(118,83,199,.18)}h1{color:#7653c7;font-size:46px;margin:0}h2{color:#7653c7;font-size:30px}p{font-size:17px;line-height:1.9}.btn{border:0;border-radius:999px;padding:14px 24px;margin:8px;font-size:17px;font-weight:700;cursor:pointer}.primary{background:linear-gradient(135deg,#a879ff,#7653c7);color:white}.ghost{background:white;color:#7653c7}.hidden{display:none}.letter{text-align:left}.photo{height:180px;border-radius:22px;background:#e9ddff;display:grid;place-items:center;color:#7653c7;margin:10px 0}.heart{position:fixed;bottom:-30px;animation:up 4s linear forwards;pointer-events:none}@keyframes up{to{transform:translateY(-110vh);opacity:0}}</style></head><body><audio id="bgm" loop><source src="youdiantian.mp3" type="audio/mpeg"></audio><main class="wrap"><section id="start" class="hero"><div class="card"><h1>To Cynthia Zhang</h1><h2>致 張歆悅 💜</h2><p>這是一封淡紫色的小小表白信。<br>我想用特別一點的方式，把心裡話說給妳聽。</p><button class="btn primary" onclick="openLetter()">打開這封表白信</button><button class="btn ghost" onclick="playMusic()">播放有點甜 🎵</button></div></section><section id="content" class="hidden"><div class="card"><h2>妳出現以後，紫色也變得更溫柔了</h2><div class="photo">Photo 1</div><div class="photo">Photo 2</div><div class="photo">Photo 3</div><div class="photo">Photo 4</div><article class="letter"><p>張歆悅：</p><p>剛開始認識的時候，我好像一直惹妳生氣。可能是因為我真的沒什麼戀愛經驗，也不太會表達自己的想法。很多時候明明是在意妳、想對妳好，卻用了很笨拙的方式。</p><p>我也曾經因為太在乎妳而有點不安，但慢慢地我明白，喜歡一個人不是比較，也不是佔有，而是理解、尊重和珍惜。</p><p>我喜歡和妳一起吃火鍋時平凡的聊天，喜歡看妳專注做自己事情的樣子，也喜歡妳笑起來的模樣。那些看似普通的瞬間，不知道從什麼時候開始，都變成了我最期待的事情。</p><p>我不是最會說甜言蜜語的人，也不敢說自己永遠不會犯錯，但如果妳願意，我會努力學著成為一個更成熟、更懂得愛的人。</p><p><b>張歆悅 Cynthia，妳願意給我一個機會，讓我以男朋友的身份，陪妳一起吃更多頓火鍋、夾更多娃娃、分享更多生活中的小事嗎？</b></p><p style="text-align:right">—— Charlie 💜</p></article><h2>妳願意做我的女朋友嗎？</h2><button id="yes" class="btn primary">💜 我願意</button><button id="no" class="btn ghost">🙈 再想想</button></div></section></main><script>const bgm=document.getElementById('bgm');function playMusic(){bgm.play().catch(()=>{})}function openLetter(){document.getElementById('start').classList.add('hidden');document.getElementById('content').classList.remove('hidden');playMusic()}function heart(){const h=document.createElement('div');h.className='heart';h.textContent=Math.random()>.5?'💜':'✨';h.style.left=Math.random()*100+'vw';h.style.fontSize=18+Math.random()*22+'px';document.body.appendChild(h);setTimeout(()=>h.remove(),4000)}setInterval(heart,800);document.getElementById('yes').onclick=()=>{document.body.innerHTML='<main class="wrap"><section class="hero"><div class="card"><h1>謝謝妳答應我 💜</h1><p>從今天開始，希望往後每個平凡的日子，都能有妳一起參與。</p><p>未來請多多指教，女朋友。✨</p></div></section></main>';setInterval(heart,150)};document.getElementById('no').onmouseover=()=>{const b=document.getElementById('no');b.style.transform=`translate(${Math.random()*220-110}px,${Math.random()*180-90}px)`}</script></body></html>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To Cynthia Zhang</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", "PingFang TC", sans-serif;
+      background:
+        radial-gradient(circle at top left, #f3d9ff 0, transparent 35%),
+        radial-gradient(circle at bottom right, #d9c7ff 0, transparent 35%),
+        linear-gradient(135deg, #fbf7ff, #eee3ff);
+      color: #4b3f5c;
+      overflow-x: hidden;
+    }
+    .music {
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      z-index: 20;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,.75);
+      color: #7a4fb3;
+      box-shadow: 0 8px 24px rgba(111,72,158,.18);
+      backdrop-filter: blur(10px);
+      font-weight: 700;
+    }
+    .wrap {
+      width: min(920px, 92%);
+      margin: 0 auto;
+      padding: 70px 0 44px;
+    }
+    .hero {
+      text-align: center;
+      padding: 34px 20px;
+      border-radius: 32px;
+      background: rgba(255,255,255,.55);
+      box-shadow: 0 20px 60px rgba(118,82,160,.16);
+      backdrop-filter: blur(12px);
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 7vw, 68px);
+      color: #8d63c7;
+      letter-spacing: .5px;
+    }
+    .sub {
+      margin-top: 12px;
+      font-size: 20px;
+      color: #7c6a92;
+    }
+    .gallery {
+      margin: 28px auto 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .gallery img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      border-radius: 22px;
+      box-shadow: 0 12px 28px rgba(82,54,128,.22);
+    }
+    .letter {
+      margin-top: 28px;
+      padding: clamp(24px, 5vw, 46px);
+      border-radius: 32px;
+      background: rgba(255,255,255,.72);
+      box-shadow: 0 20px 60px rgba(118,82,160,.15);
+      line-height: 2;
+      font-size: 18px;
+      text-align: left;
+    }
+    .letter h2 {
+      color: #8d63c7;
+      text-align: center;
+      margin-top: 0;
+      font-size: 30px;
+    }
+    .question {
+      margin-top: 28px;
+      text-align: center;
+      padding: 32px 20px;
+      border-radius: 32px;
+      background: linear-gradient(135deg, rgba(232,214,255,.9), rgba(255,255,255,.82));
+      box-shadow: 0 20px 60px rgba(118,82,160,.16);
+      min-height: 260px;
+      position: relative;
+      overflow: hidden;
+    }
+    .question h2 {
+      color: #8d63c7;
+      font-size: 30px;
+    }
+    button.choice {
+      border: none;
+      margin: 10px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .25s;
+    }
+    #yes {
+      background: #9b72d2;
+      color: #fff;
+      box-shadow: 0 10px 22px rgba(135,89,190,.28);
+    }
+    #no {
+      background: white;
+      color: #8d63c7;
+      position: relative;
+    }
+    .ending {
+      display: none;
+      text-align: center;
+      padding: 34px;
+      border-radius: 32px;
+      background: rgba(255,255,255,.75);
+      box-shadow: 0 20px 60px rgba(118,82,160,.16);
+      margin-top: 28px;
+    }
+    .ending h2 { color: #8d63c7; font-size: 32px; }
+    .heart {
+      position: fixed;
+      bottom: -30px;
+      pointer-events: none;
+      animation: floatUp 4.8s linear forwards;
+      color: #b58be6;
+      z-index: 10;
+    }
+    @keyframes floatUp {
+      to { transform: translateY(-112vh) rotate(360deg); opacity: 0; }
+    }
+    @media (max-width: 720px) {
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .gallery img { height: 220px; }
+      .letter { font-size: 16.5px; }
+    }
+  </style>
+</head>
+<body>
+  <button class="music" onclick="playMusic()">播放背景音樂 🎵</button>
+  <audio id="bgm" loop>
+    <source src="youdiantian.mp3" type="audio/mpeg" />
+  </audio>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>To Cynthia Zhang</h1>
+      <div class="sub">致 張歆悅 💜</div>
+
+      <div class="gallery">
+        <img src="1.jpg" alt="photo 1" />
+        <img src="2.jpg" alt="photo 2" />
+        <img src="3.jpg" alt="photo 3" />
+        <img src="4.jpg" alt="photo 4" />
+      </div>
+    </section>
+
+    <section class="letter">
+      <h2>寫給張歆悅的一封信</h2>
+
+      <p>張歆悅：</p>
+
+      <p>剛開始認識的時候，我好像一直惹妳生氣。</p>
+
+      <p>可能是因為我真的沒什麼戀愛經驗，也不太會表達自己的想法。很多時候明明是在意妳、想對妳好，卻用了笨拙的方式，最後讓妳不開心。</p>
+
+      <p>老實說，想到妳的前任，我也曾經偷偷吃過醋。不是因為我介意妳的過去，而是因為我太在乎妳了，也會忍不住懷疑自己，擔心自己做得不夠好，擔心自己沒辦法成為那個讓妳安心的人。</p>
+
+      <p>可是慢慢地，我發現喜歡一個人，不是和誰比較，也不是想取代誰，而是想陪伴她、理解她、珍惜她。</p>
+
+      <p>我喜歡和妳一起吃火鍋時平凡的聊天，喜歡看妳專注做自己事情的樣子，喜歡妳偶爾的小脾氣，也喜歡妳笑起來的模樣。那些看似普通的瞬間，不知道從什麼時候開始，都變成了我最期待的事情。</p>
+
+      <p>我不是一個很會說甜言蜜語的人，也不敢保證自己永遠不會犯錯，但如果妳願意，我會努力學著成為一個更成熟、更懂得愛的人。</p>
+
+      <p>不會讓妳受委屈，不會輕易放開妳的手，也會把妳放在心上，好好珍惜。</p>
+
+      <p>所以今天，我想鼓起勇氣，很認真地問妳一句：</p>
+
+      <p><strong>張歆悅（Cynthia），妳願意給我一個機會，讓我以男朋友的身份，陪妳一起吃更多頓火鍋、夾更多娃娃、分享更多生活中的小事，陪妳走過往後的每一個平凡又珍貴的日子嗎？</strong></p>
+
+      <p style="text-align:right;">—— Charlie 💜</p>
+    </section>
+
+    <section class="question" id="question">
+      <h2>張歆悅 Cynthia，妳願意做我的女朋友嗎？</h2>
+      <button class="choice" id="yes">💜 我願意</button>
+      <button class="choice" id="no">🙈 再想想</button>
+    </section>
+
+    <section class="ending" id="ending">
+      <h2>謝謝妳答應我 💜</h2>
+      <p>從今天開始，希望往後每個平凡的日子，都能有妳一起參與。</p>
+      <p>未來請多多指教，女朋友。✨</p>
+    </section>
+  </main>
+
+  <script>
+    const bgm = document.getElementById("bgm");
+    const yes = document.getElementById("yes");
+    const no = document.getElementById("no");
+
+    function playMusic() {
+      bgm.play();
+      document.querySelector(".music").innerText = "音樂播放中 💜";
+    }
+
+    no.addEventListener("mouseover", () => {
+      const x = Math.random() * 240 - 120;
+      const y = Math.random() * 180 - 90;
+      no.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    no.addEventListener("click", () => {
+      const x = Math.random() * 240 - 120;
+      const y = Math.random() * 180 - 90;
+      no.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    yes.addEventListener("click", () => {
+      document.getElementById("question").style.display = "none";
+      document.getElementById("ending").style.display = "block";
+      setInterval(createHeart, 120);
+      bgm.play().catch(() => {});
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    });
+
+    function createHeart() {
+      const h = document.createElement("div");
+      h.className = "heart";
+      h.innerHTML = Math.random() > 0.5 ? "💜" : "✨";
+      h.style.left = Math.random() * 100 + "vw";
+      h.style.fontSize = (18 + Math.random() * 24) + "px";
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 5000);
+    }
+
+    setInterval(createHeart, 900);
+  </script>
+</body>
+</html>
