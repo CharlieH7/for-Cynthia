@@ -447,9 +447,8 @@
 
     .letter-wrap {
       display: grid;
-      grid-template-columns: minmax(0, .86fr) minmax(280px, .64fr);
-      gap: clamp(30px, 8vw, 96px);
-      align-items: center;
+      grid-template-columns: minmax(0, 860px);
+      justify-content: center;
     }
 
     .letter-card {
@@ -472,14 +471,6 @@
       font-family: Georgia, "Times New Roman", serif;
       font-size: 24px;
       text-align: right;
-    }
-
-    .letter-photo {
-      width: 100%;
-      min-height: 560px;
-      object-fit: cover;
-      border-radius: 8px;
-      box-shadow: var(--shadow);
     }
 
     .finale {
@@ -752,10 +743,6 @@
         min-height: 0;
       }
 
-      .letter-photo {
-        min-height: 430px;
-      }
-
       .music-dock {
         bottom: 10px;
         grid-template-columns: auto minmax(0, 1fr);
@@ -840,7 +827,6 @@
           <p>我知道你可能覺得我們再一起特別快是因為我想一直對妳好一點，再好一點。以後也想陪妳吃更多好吃的，走更多地方，想去哪都可以跟我說喔 在妳累的時候讓妳靠一下，在妳開心的時候陪妳一起笑。</p>
           <p class="signature">Love, Charlie</p>
         </div>
-        <img class="letter-photo" src="assets/photos/02-soft-ride.jpg" alt="Charlie and Cynthia together" />
       </div>
     </section>
 
@@ -874,7 +860,6 @@
   <script>
     const photos = [
       { src: "assets/photos/01-concert-lights.jpg", caption: "Concert lights with you", wide: true },
-      { src: "assets/photos/02-soft-ride.jpg", caption: "The soft ride home", wide: true },
       { src: "assets/photos/03-night-walk.jpg", caption: "Night walk, pink hoodie", tall: true },
       { src: "assets/photos/04-pink-hoodie.jpg", caption: "The little bear hat moment", tall: true },
       { src: "assets/photos/05-tofu-dessert.jpg", caption: "Dessert concentration face" },
