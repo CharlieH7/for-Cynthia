@@ -440,51 +440,6 @@
       filter: saturate(1.08);
     }
 
-    .chapters {
-      background:
-        linear-gradient(180deg, #f8efe8 0%, #fff9f5 52%, #e5eee8 100%);
-    }
-
-    .chapter-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 34px;
-    }
-
-    .chapter {
-      min-height: 260px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 22px;
-      background: rgba(255, 255, 255, .52);
-      box-shadow: 0 18px 44px rgba(22, 13, 10, .08);
-    }
-
-    .chapter small {
-      color: var(--rose);
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: .16em;
-    }
-
-    .chapter h3 {
-      margin: 20px 0 12px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 30px;
-      line-height: 1.05;
-      font-weight: 400;
-    }
-
-    .chapter p {
-      margin-bottom: 0;
-      color: rgba(26, 20, 18, .7);
-      line-height: 1.7;
-    }
-
     .letter {
       background: var(--ink);
       color: #fffaf6;
@@ -734,9 +689,6 @@
         columns: 2 220px;
       }
 
-      .chapter-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
     }
 
     @media (max-width: 640px) {
@@ -800,10 +752,6 @@
         min-height: 0;
       }
 
-      .chapter-grid {
-        grid-template-columns: 1fr;
-      }
-
       .letter-photo {
         min-height: 430px;
       }
@@ -824,7 +772,6 @@
     <nav class="nav" aria-label="Sections">
       <a href="#letter">Letter</a>
       <a href="#gallery">Photos</a>
-      <a href="#soundtrack">Songs</a>
     </nav>
   </header>
 
@@ -883,43 +830,6 @@
       </div>
     </section>
 
-    <section class="section chapters">
-      <div class="section-inner">
-        <p class="eyebrow">The chapters</p>
-        <h2>Things that make me think of you.</h2>
-        <div class="chapter-grid">
-          <article class="chapter">
-            <small>01</small>
-            <div>
-              <h3>Concert light</h3>
-              <p>The stage was loud, but I still kept looking at you first.</p>
-            </div>
-          </article>
-          <article class="chapter">
-            <small>02</small>
-            <div>
-              <h3>Food dates</h3>
-              <p>I like ordering too much food with you and pretending we can finish everything.</p>
-            </div>
-          </article>
-          <article class="chapter">
-            <small>03</small>
-            <div>
-              <h3>Pink hoodie</h3>
-              <p>The pink hoodie, the bear hat, the tiny walks after dinner. Very you. Very cute.</p>
-            </div>
-          </article>
-          <article class="chapter" id="soundtrack">
-            <small>04</small>
-            <div>
-              <h3>Our songs</h3>
-              <p>有點甜、沒有如果、像晴天像雨天。這三首歌放在這裡，當作我們的小背景音樂。</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <section class="section letter">
       <div class="section-inner letter-wrap">
         <div class="letter-card">
@@ -947,7 +857,7 @@
   <aside class="music-dock" aria-label="Soundtrack player">
     <button class="music-toggle" type="button" id="musicToggle" aria-label="Play songs">▶</button>
     <div class="track-row">
-      <div class="track-title" id="trackTitle">Songs: 有點甜</div>
+      <div class="track-title" id="trackTitle">Songs: 沒有如果</div>
       <div class="track-list" id="trackList" aria-label="Songs"></div>
     </div>
     <audio id="audioPlayer" preload="none"></audio>
@@ -982,7 +892,6 @@
     ];
 
     const tracks = [
-      { title: "有點甜", file: "music/you-dian-tian.mp3", notes: [329.63, 392, 493.88] },
       { title: "沒有如果", file: "music/mei-you-ru-guo.mp3", notes: [293.66, 349.23, 440] },
       { title: "像晴天像雨天", file: "music/xiang-qing-tian-xiang-yu-tian.mp3", notes: [261.63, 392, 523.25] }
     ];
