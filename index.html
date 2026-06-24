@@ -3,249 +3,1170 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>To Cynthia Zhang</title>
+  <meta name="theme-color" content="#16110f" />
+  <meta name="description" content="A little love archive for Cynthia." />
+  <meta property="og:title" content="For Cynthia" />
+  <meta property="og:description" content="A little love archive from Charlie to Cynthia." />
+  <meta property="og:image" content="assets/photos/01-concert-lights.jpg" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23661b28'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='34' fill='%23fff9f5'%3EC%3C/text%3E%3C/svg%3E" />
+  <title>For Cynthia</title>
   <style>
-    * { box-sizing: border-box; }
+    :root {
+      --ink: #1a1412;
+      --paper: #fff9f5;
+      --chalk: #f8efe8;
+      --rose: #ad3348;
+      --wine: #661b28;
+      --teal: #006c67;
+      --mint: #d4eadf;
+      --gold: #bd842d;
+      --soft: rgba(255, 249, 245, .84);
+      --line: rgba(26, 20, 18, .16);
+      --shadow: 0 24px 70px rgba(22, 13, 10, .18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      min-height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", "PingFang TC", sans-serif;
-      background:
-        radial-gradient(circle at top left, #f3d9ff 0, transparent 35%),
-        radial-gradient(circle at bottom right, #d9c7ff 0, transparent 35%),
-        linear-gradient(135deg, #fbf7ff, #eee3ff);
-      color: #4b3f5c;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", "PingFang TC", sans-serif;
+      letter-spacing: 0;
       overflow-x: hidden;
     }
-    .music {
+
+    body::before {
+      content: "";
       position: fixed;
-      top: 14px;
-      right: 14px;
-      z-index: 20;
-      border: none;
-      border-radius: 999px;
-      padding: 10px 14px;
-      background: rgba(255,255,255,.75);
-      color: #7a4fb3;
-      box-shadow: 0 8px 24px rgba(111,72,158,.18);
-      backdrop-filter: blur(10px);
+      inset: 0;
+      pointer-events: none;
+      z-index: 50;
+      opacity: .16;
+      background-image:
+        linear-gradient(rgba(255,255,255,.26) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.18) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mix-blend-mode: overlay;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button,
+    a {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px clamp(18px, 4vw, 46px);
+      color: #fffaf6;
+      transition: background .3s ease, color .3s ease, box-shadow .3s ease;
+    }
+
+    .topbar.is-scrolled {
+      background: rgba(255, 249, 245, .86);
+      color: var(--ink);
+      box-shadow: 0 10px 26px rgba(22, 13, 10, .08);
+      backdrop-filter: blur(16px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border: 1px solid currentColor;
+      border-radius: 50%;
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: clamp(10px, 2vw, 22px);
+      font-size: 13px;
       font-weight: 700;
     }
-    .wrap {
-      width: min(920px, 92%);
-      margin: 0 auto;
-      padding: 70px 0 44px;
+
+    .nav a {
+      opacity: .84;
     }
+
+    .nav a:hover {
+      opacity: 1;
+    }
+
     .hero {
-      text-align: center;
-      padding: 34px 20px;
-      border-radius: 32px;
-      background: rgba(255,255,255,.55);
-      box-shadow: 0 20px 60px rgba(118,82,160,.16);
-      backdrop-filter: blur(12px);
-    }
-    h1 {
-      margin: 0;
-      font-size: clamp(34px, 7vw, 68px);
-      color: #8d63c7;
-      letter-spacing: .5px;
-    }
-    .sub {
-      margin-top: 12px;
-      font-size: 20px;
-      color: #7c6a92;
-    }
-    .gallery {
-      margin: 28px auto 0;
+      position: relative;
+      min-height: 92svh;
+      isolation: isolate;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      align-items: end;
+      padding: 114px clamp(18px, 5vw, 68px) 34px;
+      overflow: hidden;
+      background: #16110f;
+      color: #fffaf6;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 34%;
+      opacity: 1;
+      transform: scale(1.03);
+      transition: opacity 900ms ease, transform 4200ms ease;
+    }
+
+    .hero-bg.is-fading {
+      opacity: 0;
+      transform: scale(1.07);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(90deg, rgba(16, 9, 7, .84) 0%, rgba(16, 9, 7, .54) 42%, rgba(16, 9, 7, .16) 100%),
+        linear-gradient(0deg, rgba(16, 9, 7, .72) 0%, rgba(16, 9, 7, .12) 44%, rgba(16, 9, 7, .44) 100%);
+    }
+
+    .hero-inner {
+      width: min(1180px, 100%);
+      display: grid;
+      gap: 32px;
+    }
+
+    .kicker {
+      margin: 0 0 12px;
+      color: #ffd8c7;
+      font-size: 13px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .24em;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin-bottom: 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(74px, 14vw, 172px);
+      line-height: .82;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    .hero-copy {
+      max-width: 710px;
+      color: rgba(255, 250, 246, .9);
+      font-size: clamp(20px, 3vw, 34px);
+      line-height: 1.32;
+      font-weight: 650;
+      text-wrap: balance;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-weight: 850;
+      transition: transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button.primary {
+      border-color: #fffaf6;
+      background: #fffaf6;
+      color: var(--wine);
+    }
+
+    .button.ghost {
+      color: #fffaf6;
+      background: rgba(255, 250, 246, .1);
+      backdrop-filter: blur(14px);
+    }
+
+    .film-strip {
+      width: min(780px, 100%);
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .film-strip img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 250, 246, .42);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, .3);
+    }
+
+    .section {
+      padding: clamp(62px, 10vw, 118px) clamp(18px, 5vw, 68px);
+    }
+
+    .section-inner {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+    }
+
+    .intro {
+      background:
+        linear-gradient(135deg, #fff9f5 0%, #f6efe7 48%, #e7f0ea 100%);
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(280px, .78fr);
+      gap: clamp(30px, 7vw, 86px);
+      align-items: center;
+    }
+
+    .eyebrow {
+      margin-bottom: 14px;
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(38px, 7vw, 86px);
+      line-height: .94;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    .lead {
+      max-width: 740px;
+      color: rgba(26, 20, 18, .78);
+      font-size: clamp(18px, 2vw, 23px);
+      line-height: 1.75;
+    }
+
+    .portrait-stack {
+      position: relative;
+      min-height: 590px;
+    }
+
+    .portrait-stack img {
+      position: absolute;
+      width: 68%;
+      max-width: 360px;
+      object-fit: cover;
+      border: 10px solid #fffaf6;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .portrait-stack img:nth-child(1) {
+      top: 0;
+      right: 0;
+      aspect-ratio: 3 / 4;
+      transform: rotate(2deg);
+    }
+
+    .portrait-stack img:nth-child(2) {
+      left: 0;
+      top: 190px;
+      aspect-ratio: 4 / 5;
+      transform: rotate(-4deg);
+    }
+
+    .portrait-stack img:nth-child(3) {
+      right: 9%;
+      bottom: 0;
+      aspect-ratio: 1;
+      transform: rotate(3deg);
+    }
+
+    .quote-panel {
+      margin-top: 38px;
+      border-left: 5px solid var(--rose);
+      padding: 8px 0 8px 22px;
+      color: rgba(26, 20, 18, .76);
+      font-size: 20px;
+      line-height: 1.8;
+    }
+
+    .gallery-section {
+      background: #16110f;
+      color: #fffaf6;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+
+    .section-head p {
+      max-width: 390px;
+      margin-bottom: 10px;
+      color: rgba(255, 250, 246, .72);
+      line-height: 1.7;
+    }
+
+    .gallery {
+      columns: 4 220px;
+      column-gap: 12px;
       gap: 12px;
     }
-    .gallery img {
+
+    .photo-card {
+      display: block;
+      position: relative;
       width: 100%;
-      height: 210px;
-      object-fit: cover;
-      border-radius: 22px;
-      box-shadow: 0 12px 28px rgba(82,54,128,.22);
-    }
-    .letter {
-      margin-top: 28px;
-      padding: clamp(24px, 5vw, 46px);
-      border-radius: 32px;
-      background: rgba(255,255,255,.72);
-      box-shadow: 0 20px 60px rgba(118,82,160,.15);
-      line-height: 2;
-      font-size: 18px;
-      text-align: left;
-    }
-    .letter h2 {
-      color: #8d63c7;
-      text-align: center;
-      margin-top: 0;
-      font-size: 30px;
-    }
-    .question {
-      margin-top: 28px;
-      text-align: center;
-      padding: 32px 20px;
-      border-radius: 32px;
-      background: linear-gradient(135deg, rgba(232,214,255,.9), rgba(255,255,255,.82));
-      box-shadow: 0 20px 60px rgba(118,82,160,.16);
-      min-height: 260px;
-      position: relative;
+      min-height: 0;
+      margin: 0 0 12px;
+      border: 0;
+      border-radius: 8px;
+      padding: 0;
       overflow: hidden;
-    }
-    .question h2 {
-      color: #8d63c7;
-      font-size: 30px;
-    }
-    button.choice {
-      border: none;
-      margin: 10px;
-      padding: 14px 28px;
-      border-radius: 999px;
-      font-size: 17px;
-      font-weight: 700;
       cursor: pointer;
-      transition: .25s;
+      background: #2d211e;
+      color: #fffaf6;
+      box-shadow: 0 18px 54px rgba(0, 0, 0, .24);
+      break-inside: avoid;
+      page-break-inside: avoid;
     }
-    #yes {
-      background: #9b72d2;
-      color: #fff;
-      box-shadow: 0 10px 22px rgba(135,89,190,.28);
+
+    .photo-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      min-height: 0;
+      object-fit: cover;
+      transition: transform .42s ease, filter .42s ease;
     }
-    #no {
-      background: white;
-      color: #8d63c7;
+
+    .photo-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 46%, rgba(12, 8, 7, .74) 100%);
+      opacity: .8;
+      transition: opacity .3s ease;
+    }
+
+    .photo-card span {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 12px;
+      z-index: 1;
+      font-size: 13px;
+      font-weight: 820;
+      text-align: left;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, .5);
+    }
+
+    .photo-card:hover img {
+      transform: scale(1.045);
+      filter: saturate(1.08);
+    }
+
+    .chapters {
+      background:
+        linear-gradient(180deg, #f8efe8 0%, #fff9f5 52%, #e5eee8 100%);
+    }
+
+    .chapter-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .chapter {
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      background: rgba(255, 255, 255, .52);
+      box-shadow: 0 18px 44px rgba(22, 13, 10, .08);
+    }
+
+    .chapter small {
+      color: var(--rose);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+    }
+
+    .chapter h3 {
+      margin: 20px 0 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      line-height: 1.05;
+      font-weight: 400;
+    }
+
+    .chapter p {
+      margin-bottom: 0;
+      color: rgba(26, 20, 18, .7);
+      line-height: 1.7;
+    }
+
+    .letter {
+      background: var(--ink);
+      color: #fffaf6;
+    }
+
+    .letter-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, .86fr) minmax(280px, .64fr);
+      gap: clamp(30px, 8vw, 96px);
+      align-items: center;
+    }
+
+    .letter-card {
+      border: 1px solid rgba(255, 250, 246, .2);
+      border-radius: 8px;
+      padding: clamp(24px, 5vw, 48px);
+      background: rgba(255, 250, 246, .06);
+      box-shadow: 0 28px 80px rgba(0, 0, 0, .26);
+    }
+
+    .letter-card p {
+      color: rgba(255, 250, 246, .82);
+      font-size: clamp(17px, 1.8vw, 20px);
+      line-height: 2;
+    }
+
+    .signature {
+      margin: 26px 0 0;
+      color: #ffd6c5;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      text-align: right;
+    }
+
+    .letter-photo {
+      width: 100%;
+      min-height: 560px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .finale {
+      min-height: 72svh;
       position: relative;
-    }
-    .ending {
-      display: none;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(120deg, rgba(102, 27, 40, .9), rgba(0, 108, 103, .82)),
+        url("assets/photos/13-hotpot-feast.jpg") center / cover;
+      color: #fffaf6;
       text-align: center;
-      padding: 34px;
-      border-radius: 32px;
-      background: rgba(255,255,255,.75);
-      box-shadow: 0 20px 60px rgba(118,82,160,.16);
-      margin-top: 28px;
     }
-    .ending h2 { color: #8d63c7; font-size: 32px; }
-    .heart {
+
+    .finale-content {
+      width: min(860px, 100%);
+      padding: 0 clamp(18px, 5vw, 68px);
+      text-shadow: 0 3px 26px rgba(0, 0, 0, .26);
+    }
+
+    .finale h2 {
+      margin-bottom: 18px;
+    }
+
+    .finale p {
+      max-width: 640px;
+      margin: 0 auto 26px;
+      color: rgba(255, 250, 246, .86);
+      font-size: clamp(18px, 2vw, 23px);
+      line-height: 1.7;
+    }
+
+    .button.final {
+      background: #fffaf6;
+      color: var(--wine);
+      border-color: #fffaf6;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, .2);
+    }
+
+    .music-dock {
       position: fixed;
-      bottom: -30px;
+      left: 50%;
+      bottom: 18px;
+      z-index: 45;
+      width: min(720px, calc(100% - 24px));
+      transform: translateX(-50%);
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 14px;
+      align-items: center;
+      padding: 12px;
+      border: 1px solid rgba(255, 250, 246, .48);
+      border-radius: 8px;
+      background: rgba(22, 17, 15, .82);
+      color: #fffaf6;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .26);
+      backdrop-filter: blur(18px);
+    }
+
+    .music-toggle {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 250, 246, .52);
+      border-radius: 50%;
+      background: #fffaf6;
+      color: var(--wine);
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 950;
+    }
+
+    .track-row {
+      min-width: 0;
+    }
+
+    .track-title {
+      margin-bottom: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 850;
+    }
+
+    .track-list {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .track-list::-webkit-scrollbar {
+      display: none;
+    }
+
+    .track {
+      flex: 0 0 auto;
+      border: 1px solid rgba(255, 250, 246, .26);
+      border-radius: 999px;
+      padding: 7px 10px;
+      background: rgba(255, 250, 246, .08);
+      color: rgba(255, 250, 246, .8);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .track.is-active {
+      border-color: #ffd6c5;
+      background: #ffd6c5;
+      color: var(--wine);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: rgba(8, 6, 5, .86);
+      opacity: 0;
       pointer-events: none;
-      animation: floatUp 4.8s linear forwards;
-      color: #b58be6;
-      z-index: 10;
+      transition: opacity .22s ease;
     }
-    @keyframes floatUp {
-      to { transform: translateY(-112vh) rotate(360deg); opacity: 0; }
+
+    .lightbox.is-open {
+      opacity: 1;
+      pointer-events: auto;
     }
-    @media (max-width: 720px) {
-      .gallery { grid-template-columns: repeat(2, 1fr); }
-      .gallery img { height: 220px; }
-      .letter { font-size: 16.5px; }
+
+    .lightbox figure {
+      width: min(980px, 100%);
+      max-height: calc(100svh - 40px);
+      margin: 0;
+      display: grid;
+      gap: 12px;
+      color: #fffaf6;
+    }
+
+    .lightbox img {
+      width: 100%;
+      max-height: calc(100svh - 110px);
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 34px 100px rgba(0, 0, 0, .38);
+    }
+
+    .lightbox figcaption {
+      text-align: center;
+      font-weight: 800;
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255, 255, 255, .38);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .1);
+      color: #fff;
+      cursor: pointer;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .spark {
+      position: fixed;
+      z-index: 70;
+      bottom: -30px;
+      color: #ffd6c5;
+      pointer-events: none;
+      animation: rise 4200ms linear forwards;
+      text-shadow: 0 4px 18px rgba(0, 0, 0, .28);
+    }
+
+    @keyframes rise {
+      to {
+        transform: translate3d(var(--x), -110svh, 0) rotate(280deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .nav a:not(:last-child) {
+        display: none;
+      }
+
+      .intro-grid,
+      .letter-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .portrait-stack {
+        min-height: 500px;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .gallery {
+        columns: 2 220px;
+      }
+
+      .chapter-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        padding: 14px 16px;
+      }
+
+      .brand span:last-child {
+        max-width: 146px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .hero {
+        min-height: 92svh;
+        padding: 104px 16px 22px;
+      }
+
+      .hero::after {
+        background:
+          linear-gradient(180deg, rgba(16, 9, 7, .38) 0%, rgba(16, 9, 7, .84) 100%),
+          linear-gradient(90deg, rgba(16, 9, 7, .55), rgba(16, 9, 7, .18));
+      }
+
+      .hero-copy {
+        max-width: 96%;
+      }
+
+      .hero-actions {
+        gap: 10px;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .film-strip {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 5px;
+      }
+
+      .section {
+        padding: 56px 16px;
+      }
+
+      .portrait-stack {
+        min-height: 430px;
+      }
+
+      .portrait-stack img {
+        border-width: 7px;
+      }
+
+      .gallery {
+        columns: 1;
+      }
+
+      .photo-card img {
+        height: auto;
+        min-height: 0;
+      }
+
+      .chapter-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .letter-photo {
+        min-height: 430px;
+      }
+
+      .music-dock {
+        bottom: 10px;
+        grid-template-columns: auto minmax(0, 1fr);
+      }
     }
   </style>
 </head>
 <body>
-  <button class="music" onclick="playMusic()">播放背景音樂 🎵</button>
-  <audio id="bgm" loop>
-    <source src="youdiantian.mp3" type="audio/mpeg" />
-  </audio>
+  <header class="topbar" id="topbar">
+    <a class="brand" href="#top" aria-label="For Cynthia">
+      <span class="brand-mark">C</span>
+      <span>For Cynthia</span>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#letter">Letter</a>
+      <a href="#gallery">Photos</a>
+      <a href="#soundtrack">Songs</a>
+    </nav>
+  </header>
 
-  <main class="wrap">
-    <section class="hero">
-      <h1>To Cynthia Zhang</h1>
-      <div class="sub">致 張歆悅 💜</div>
-
-      <div class="gallery">
-        <img src="1.jpg" alt="photo 1" />
-        <img src="2.jpg" alt="photo 2" />
-        <img src="3.jpg" alt="photo 3" />
-        <img src="4.jpg" alt="photo 4" />
+  <main id="top">
+    <section class="hero" aria-label="Cynthia hero">
+      <img class="hero-bg" id="heroBg" src="assets/photos/01-concert-lights.jpg" alt="Charlie and Cynthia under concert lights" />
+      <div class="hero-inner">
+        <div>
+          <p class="kicker">Charlie’s love archive</p>
+          <h1>Cynthia</h1>
+          <p class="hero-copy">張歆悅，妳把普通的一天，變成我想永遠收藏的電影。</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#letter">Read the letter</a>
+            <button class="button ghost" type="button" id="heroPlay">Play soundtrack</button>
+          </div>
+        </div>
+        <div class="film-strip" aria-label="Small memories">
+          <img src="assets/photos/04-pink-hoodie.jpg" alt="Cynthia walking in a pink hoodie" />
+          <img src="assets/photos/09-cake-table.jpg" alt="Cakes on the table with Cynthia" />
+          <img src="assets/photos/12-cap-smile.jpg" alt="Cynthia smiling under a cap" />
+          <img src="assets/photos/14-mirror-moment.jpg" alt="Cynthia at a mirror" />
+          <img src="assets/photos/13-hotpot-feast.jpg" alt="A hotpot feast" />
+        </div>
       </div>
     </section>
 
-    <section class="letter">
-      <h2>寫給張歆悅的一封信</h2>
-
-      <p>張歆悅：</p>
-
-      <p>剛開始認識的時候，我好像一直惹妳生氣。</p>
-
-      <p>可能是因為我真的沒什麼戀愛經驗，也不太會表達自己的想法。很多時候明明是在意妳、想對妳好，卻用了笨拙的方式，最後讓妳不開心。</p>
-
-      <p>老實說，想到妳的前任，我也曾經偷偷吃過醋。不是因為我介意妳的過去，而是因為我太在乎妳了，也會忍不住懷疑自己，擔心自己做得不夠好，擔心自己沒辦法成為那個讓妳安心的人。</p>
-
-      <p>可是慢慢地，我發現喜歡一個人，不是和誰比較，也不是想取代誰，而是想陪伴她、理解她、珍惜她。</p>
-
-      <p>我喜歡和妳一起吃火鍋時平凡的聊天，喜歡看妳專注做自己事情的樣子，喜歡妳偶爾的小脾氣，也喜歡妳笑起來的模樣。那些看似普通的瞬間，不知道從什麼時候開始，都變成了我最期待的事情。</p>
-
-      <p>我不是一個很會說甜言蜜語的人，也不敢保證自己永遠不會犯錯，但如果妳願意，我會努力學著成為一個更成熟、更懂得愛的人。</p>
-
-      <p>不會讓妳受委屈，不會輕易放開妳的手，也會把妳放在心上，好好珍惜。</p>
-
-      <p>所以今天，我想鼓起勇氣，很認真地問妳一句：</p>
-
-      <p><strong>張歆悅（Cynthia），妳願意給我一個機會，讓我以男朋友的身份，陪妳一起吃更多頓火鍋、夾更多娃娃、分享更多生活中的小事，陪妳走過往後的每一個平凡又珍貴的日子嗎？</strong></p>
-
-      <p style="text-align:right;">—— Charlie 💜</p>
+    <section class="section intro" id="letter">
+      <div class="section-inner intro-grid">
+        <div>
+          <p class="eyebrow">A little forever</p>
+          <h2>All my favorite days have you inside them.</h2>
+          <p class="lead">I love the quiet versions of us: walking at night, waiting for food, choosing cake, sitting across from each other with hotpot steam between us. None of those moments need to be perfect. They already are, because you are there.</p>
+          <div class="quote-panel">
+            我不是最會說甜話的人，但我會很認真地喜歡妳，很認真地陪妳，把妳每一個可愛的小表情都放在心上。
+          </div>
+        </div>
+        <div class="portrait-stack" aria-hidden="true">
+          <img src="assets/photos/06-morning-mirror.jpg" alt="" />
+          <img src="assets/photos/07-sweet-face.jpg" alt="" />
+          <img src="assets/photos/16-dessert-hair.jpg" alt="" />
+        </div>
+      </div>
     </section>
 
-    <section class="question" id="question">
-      <h2>張歆悅 Cynthia，妳願意做我的女朋友嗎？</h2>
-      <button class="choice" id="yes">💜 我願意</button>
-      <button class="choice" id="no">🙈 再想想</button>
+    <section class="section gallery-section" id="gallery">
+      <div class="section-inner">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Our film roll</p>
+            <h2>Small scenes, big feelings.</h2>
+          </div>
+          <p>Every frame is a tiny receipt that says I was lucky enough to be beside you.</p>
+        </div>
+
+        <div class="gallery" id="photoGrid" aria-label="Photo gallery"></div>
+      </div>
     </section>
 
-    <section class="ending" id="ending">
-      <h2>謝謝妳答應我 💜</h2>
-      <p>從今天開始，希望往後每個平凡的日子，都能有妳一起參與。</p>
-      <p>未來請多多指教，女朋友。✨</p>
+    <section class="section chapters">
+      <div class="section-inner">
+        <p class="eyebrow">The chapters</p>
+        <h2>A few reasons I keep smiling at my phone.</h2>
+        <div class="chapter-grid">
+          <article class="chapter">
+            <small>01</small>
+            <div>
+              <h3>Concert light</h3>
+              <p>Even in a loud crowd, you still became the only thing I noticed.</p>
+            </div>
+          </article>
+          <article class="chapter">
+            <small>02</small>
+            <div>
+              <h3>Food dates</h3>
+              <p>Hotpot, dessert, cake, rice, soup. Somehow every table feels warmer when you sit across from me.</p>
+            </div>
+          </article>
+          <article class="chapter">
+            <small>03</small>
+            <div>
+              <h3>Pink hoodie</h3>
+              <p>I have a whole soft spot for your pink hoodie era, the hat, the little walks, the way you look without trying.</p>
+            </div>
+          </article>
+          <article class="chapter" id="soundtrack">
+            <small>04</small>
+            <div>
+              <h3>Our songs</h3>
+              <p>有點甜, 沒有如果, 像晴天像雨天, and DAMN live here as the little soundtrack of us.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section letter">
+      <div class="section-inner letter-wrap">
+        <div class="letter-card">
+          <p class="eyebrow">Dear Cynthia</p>
+          <h2>妳是我最想偏心的人。</h2>
+          <p>我喜歡妳笑起來的樣子，也喜歡妳認真看手機、認真吃東西、認真假裝沒注意到我在拍妳的樣子。妳有時候很可愛，有時候很酷，有時候像晴天，有時候像雨天，但不管是哪一種，都是我想靠近的妳。</p>
+          <p>謝謝妳出現在我的生活裡，讓很多本來普通的日子都有了名字。以後我想陪妳吃更多好吃的，走更多夜路，看更多燈，拍更多照片，也在妳不開心的時候，安安靜靜站在妳這邊。</p>
+          <p>我會把妳放在很重要的位置，好好珍惜，好好照顧，好好喜歡。</p>
+          <p class="signature">Always, Charlie</p>
+        </div>
+        <img class="letter-photo" src="assets/photos/02-soft-ride.jpg" alt="Charlie and Cynthia together" />
+      </div>
+    </section>
+
+    <section class="finale" aria-label="Final note">
+      <div class="finale-content">
+        <p class="eyebrow">One more thing</p>
+        <h2>My favorite place is beside you.</h2>
+        <p>女朋友，未來的日子請繼續多多指教。我會努力成為讓妳安心、讓妳開心、也讓妳覺得被愛的人。</p>
+        <button class="button final" type="button" id="sealButton">Seal this little promise</button>
+      </div>
     </section>
   </main>
 
+  <aside class="music-dock" aria-label="Soundtrack player">
+    <button class="music-toggle" type="button" id="musicToggle" aria-label="Play soundtrack">▶</button>
+    <div class="track-row">
+      <div class="track-title" id="trackTitle">Soundtrack: 有點甜</div>
+      <div class="track-list" id="trackList" aria-label="Songs"></div>
+    </div>
+    <audio id="audioPlayer" preload="none"></audio>
+  </aside>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" type="button" id="lightboxClose" aria-label="Close photo">×</button>
+    <figure>
+      <img id="lightboxImage" src="assets/photos/01-concert-lights.jpg" alt="" />
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+  </div>
+
   <script>
-    const bgm = document.getElementById("bgm");
-    const yes = document.getElementById("yes");
-    const no = document.getElementById("no");
+    const photos = [
+      { src: "assets/photos/01-concert-lights.jpg", caption: "Concert lights with you", wide: true },
+      { src: "assets/photos/02-soft-ride.jpg", caption: "The soft ride home", wide: true },
+      { src: "assets/photos/03-night-walk.jpg", caption: "Night walk, pink hoodie", tall: true },
+      { src: "assets/photos/04-pink-hoodie.jpg", caption: "The little bear hat moment", tall: true },
+      { src: "assets/photos/05-tofu-dessert.jpg", caption: "Dessert concentration face" },
+      { src: "assets/photos/06-morning-mirror.jpg", caption: "Morning mirror look" },
+      { src: "assets/photos/07-sweet-face.jpg", caption: "The look that melts me" },
+      { src: "assets/photos/08-dinner-date.jpg", caption: "Dinner date energy", tall: true },
+      { src: "assets/photos/09-cake-table.jpg", caption: "Cake before the first bite" },
+      { src: "assets/photos/10-pink-cake.jpg", caption: "Pink hoodie, perfect cake" },
+      { src: "assets/photos/11-hotpot-colors.jpg", caption: "Hotpot colors", wide: true },
+      { src: "assets/photos/12-cap-smile.jpg", caption: "Cap smile", tall: true },
+      { src: "assets/photos/13-hotpot-feast.jpg", caption: "A whole feast for two", wide: true },
+      { src: "assets/photos/14-mirror-moment.jpg", caption: "Mirror movie moment", tall: true },
+      { src: "assets/photos/15-haidilao-menu.jpg", caption: "Menu boss at Haidilao", tall: true },
+      { src: "assets/photos/16-dessert-hair.jpg", caption: "Dessert and hair moment" }
+    ];
 
-    function playMusic() {
-      bgm.play();
-      document.querySelector(".music").innerText = "音樂播放中 💜";
+    const tracks = [
+      { title: "有點甜", file: "music/you-dian-tian.mp3", notes: [329.63, 392, 493.88] },
+      { title: "沒有如果", file: "music/mei-you-ru-guo.mp3", notes: [293.66, 349.23, 440] },
+      { title: "像晴天像雨天", file: "music/xiang-qing-tian-xiang-yu-tian.mp3", notes: [261.63, 392, 523.25] },
+      { title: "DAMN (feat. 6LACK)", file: "music/damn-feat-6lack.mp3", notes: [220, 277.18, 329.63] }
+    ];
+
+    const topbar = document.getElementById("topbar");
+    const heroBg = document.getElementById("heroBg");
+    const photoGrid = document.getElementById("photoGrid");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+    const lightboxCaption = document.getElementById("lightboxCaption");
+    const lightboxClose = document.getElementById("lightboxClose");
+    const musicToggle = document.getElementById("musicToggle");
+    const heroPlay = document.getElementById("heroPlay");
+    const trackList = document.getElementById("trackList");
+    const trackTitle = document.getElementById("trackTitle");
+    const audioPlayer = document.getElementById("audioPlayer");
+    const sealButton = document.getElementById("sealButton");
+
+    let heroIndex = 0;
+    let currentTrack = 0;
+    let isPlaying = false;
+    let audioContext;
+    let ambientNodes = [];
+
+    function updateTopbar() {
+      topbar.classList.toggle("is-scrolled", window.scrollY > 24);
     }
 
-    no.addEventListener("mouseover", () => {
-      const x = Math.random() * 240 - 120;
-      const y = Math.random() * 180 - 90;
-      no.style.transform = `translate(${x}px, ${y}px)`;
-    });
-
-    no.addEventListener("click", () => {
-      const x = Math.random() * 240 - 120;
-      const y = Math.random() * 180 - 90;
-      no.style.transform = `translate(${x}px, ${y}px)`;
-    });
-
-    yes.addEventListener("click", () => {
-      document.getElementById("question").style.display = "none";
-      document.getElementById("ending").style.display = "block";
-      setInterval(createHeart, 120);
-      bgm.play().catch(() => {});
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-    });
-
-    function createHeart() {
-      const h = document.createElement("div");
-      h.className = "heart";
-      h.innerHTML = Math.random() > 0.5 ? "💜" : "✨";
-      h.style.left = Math.random() * 100 + "vw";
-      h.style.fontSize = (18 + Math.random() * 24) + "px";
-      document.body.appendChild(h);
-      setTimeout(() => h.remove(), 5000);
+    function rotateHero() {
+      heroIndex = (heroIndex + 1) % photos.length;
+      heroBg.classList.add("is-fading");
+      window.setTimeout(() => {
+        heroBg.src = photos[heroIndex].src;
+        heroBg.alt = photos[heroIndex].caption;
+        heroBg.classList.remove("is-fading");
+      }, 520);
     }
 
-    setInterval(createHeart, 900);
+    function buildGallery() {
+      const fragment = document.createDocumentFragment();
+      photos.forEach((photo, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `photo-card${photo.wide ? " wide" : ""}${photo.tall ? " tall" : ""}`;
+        button.innerHTML = `<img src="${photo.src}" alt="${photo.caption}" decoding="async"><span>${photo.caption}</span>`;
+        button.addEventListener("click", () => openLightbox(index));
+        fragment.appendChild(button);
+      });
+      photoGrid.appendChild(fragment);
+    }
+
+    function openLightbox(index) {
+      const photo = photos[index];
+      lightboxImage.src = photo.src;
+      lightboxImage.alt = photo.caption;
+      lightboxCaption.textContent = photo.caption;
+      lightbox.classList.add("is-open");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove("is-open");
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    function buildTracks() {
+      const fragment = document.createDocumentFragment();
+      tracks.forEach((track, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `track${index === currentTrack ? " is-active" : ""}`;
+        button.textContent = track.title;
+        button.addEventListener("click", () => {
+          currentTrack = index;
+          updateTrackUi();
+          if (isPlaying) playMusic();
+        });
+        fragment.appendChild(button);
+      });
+      trackList.appendChild(fragment);
+    }
+
+    function updateTrackUi() {
+      trackTitle.textContent = `Soundtrack: ${tracks[currentTrack].title}`;
+      [...trackList.children].forEach((button, index) => {
+        button.classList.toggle("is-active", index === currentTrack);
+      });
+    }
+
+    function stopAmbient() {
+      ambientNodes.forEach(node => {
+        try { node.stop ? node.stop() : node.disconnect(); } catch (error) {}
+      });
+      ambientNodes = [];
+    }
+
+    function startAmbient() {
+      stopAmbient();
+      audioContext = audioContext || new (window.AudioContext || window.webkitAudioContext)();
+      const master = audioContext.createGain();
+      const filter = audioContext.createBiquadFilter();
+      const notes = tracks[currentTrack].notes;
+      master.gain.value = 0.035;
+      filter.type = "lowpass";
+      filter.frequency.value = 960;
+      filter.connect(master);
+      master.connect(audioContext.destination);
+
+      notes.forEach((frequency, index) => {
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        oscillator.type = index === 1 ? "triangle" : "sine";
+        oscillator.frequency.value = frequency / (index === 2 ? 2 : 1);
+        gain.gain.value = 0.12;
+        oscillator.connect(gain);
+        gain.connect(filter);
+        oscillator.start();
+        ambientNodes.push(oscillator, gain);
+      });
+      ambientNodes.push(filter, master);
+    }
+
+    async function playMusic() {
+      const track = tracks[currentTrack];
+      audioPlayer.src = track.file;
+      try {
+        stopAmbient();
+        await audioPlayer.play();
+      } catch (error) {
+        startAmbient();
+      }
+      isPlaying = true;
+      musicToggle.textContent = "Ⅱ";
+      musicToggle.setAttribute("aria-label", "Pause soundtrack");
+      heroPlay.textContent = "Soundtrack playing";
+    }
+
+    function pauseMusic() {
+      audioPlayer.pause();
+      stopAmbient();
+      isPlaying = false;
+      musicToggle.textContent = "▶";
+      musicToggle.setAttribute("aria-label", "Play soundtrack");
+      heroPlay.textContent = "Play soundtrack";
+    }
+
+    function burst() {
+      for (let i = 0; i < 34; i += 1) {
+        const spark = document.createElement("span");
+        spark.className = "spark";
+        spark.textContent = i % 3 === 0 ? "♡" : "✦";
+        spark.style.left = `${Math.random() * 100}vw`;
+        spark.style.fontSize = `${18 + Math.random() * 26}px`;
+        spark.style.setProperty("--x", `${(Math.random() - .5) * 240}px`);
+        spark.style.animationDelay = `${Math.random() * 900}ms`;
+        document.body.appendChild(spark);
+        window.setTimeout(() => spark.remove(), 5200);
+      }
+    }
+
+    window.addEventListener("scroll", updateTopbar, { passive: true });
+    window.setInterval(rotateHero, 4400);
+    lightboxClose.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", event => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeLightbox();
+    });
+    musicToggle.addEventListener("click", () => {
+      isPlaying ? pauseMusic() : playMusic();
+    });
+    heroPlay.addEventListener("click", playMusic);
+    sealButton.addEventListener("click", burst);
+    audioPlayer.addEventListener("error", () => {
+      if (isPlaying) startAmbient();
+    });
+
+    buildGallery();
+    buildTracks();
+    updateTopbar();
   </script>
 </body>
 </html>
