@@ -785,7 +785,7 @@
           <p class="hero-copy">張歆悅，我做了這個小網站給妳。不是很完美，但每一張照片我都很喜歡。</p>
           <div class="hero-actions">
             <a class="button primary" href="#letter">Read my note</a>
-            <button class="button ghost" type="button" id="heroPlay">Play the songs</button>
+            <button class="button ghost" type="button" id="heroPlay">Play the song</button>
           </div>
         </div>
         <div class="film-strip" aria-label="Small memories">
@@ -854,13 +854,13 @@
     </section>
   </main>
 
-  <aside class="music-dock" aria-label="Soundtrack player">
-    <button class="music-toggle" type="button" id="musicToggle" aria-label="Play songs">▶</button>
+  <aside class="music-dock" aria-label="Music player">
+    <button class="music-toggle" type="button" id="musicToggle" aria-label="Play song">▶</button>
     <div class="track-row">
-      <div class="track-title" id="trackTitle">Songs: 沒有如果</div>
-      <div class="track-list" id="trackList" aria-label="Songs"></div>
+      <div class="track-title" id="trackTitle">Playing: 像晴天像雨天</div>
+      <div class="track-list" id="trackList" aria-label="Song"></div>
     </div>
-    <audio id="audioPlayer" preload="none"></audio>
+    <audio id="audioPlayer" preload="auto" autoplay src="music/xiang-qing-tian-xiang-yu-tian.mp3"></audio>
   </aside>
 
   <div class="lightbox" id="lightbox" aria-hidden="true">
@@ -892,7 +892,6 @@
     ];
 
     const tracks = [
-      { title: "沒有如果", file: "music/mei-you-ru-guo.mp3", notes: [293.66, 349.23, 440] },
       { title: "像晴天像雨天", file: "music/xiang-qing-tian-xiang-yu-tian.mp3", notes: [261.63, 392, 523.25] }
     ];
 
@@ -977,7 +976,7 @@
     }
 
     function updateTrackUi() {
-      trackTitle.textContent = `Songs: ${tracks[currentTrack].title}`;
+      trackTitle.textContent = `Playing: ${tracks[currentTrack].title}`;
       [...trackList.children].forEach((button, index) => {
         button.classList.toggle("is-active", index === currentTrack);
       });
@@ -1016,19 +1015,24 @@
       ambientNodes.push(filter, master);
     }
 
-    async function playMusic() {
+    async function playMusic(options = {}) {
       const track = tracks[currentTrack];
-      audioPlayer.src = track.file;
+      if (!audioPlayer.src.endsWith(track.file)) {
+        audioPlayer.src = track.file;
+      }
       try {
         stopAmbient();
         await audioPlayer.play();
+        isPlaying = true;
+        musicToggle.textContent = "Ⅱ";
+        musicToggle.setAttribute("aria-label", "Pause song");
+        heroPlay.textContent = "Song playing";
       } catch (error) {
-        startAmbient();
+        isPlaying = false;
+        musicToggle.textContent = "▶";
+        musicToggle.setAttribute("aria-label", "Play song");
+        heroPlay.textContent = options.autoplay ? "Tap to play the song" : "Play the song";
       }
-      isPlaying = true;
-      musicToggle.textContent = "Ⅱ";
-      musicToggle.setAttribute("aria-label", "Pause songs");
-      heroPlay.textContent = "Songs playing";
     }
 
     function pauseMusic() {
@@ -1036,8 +1040,8 @@
       stopAmbient();
       isPlaying = false;
       musicToggle.textContent = "▶";
-      musicToggle.setAttribute("aria-label", "Play songs");
-      heroPlay.textContent = "Play the songs";
+      musicToggle.setAttribute("aria-label", "Play song");
+      heroPlay.textContent = "Play the song";
     }
 
     function burst() {
@@ -1075,6 +1079,9 @@
     buildGallery();
     buildTracks();
     updateTopbar();
+    window.addEventListener("load", () => {
+      playMusic({ autoplay: true });
+    }, { once: true });
   </script>
 </body>
 </html>
