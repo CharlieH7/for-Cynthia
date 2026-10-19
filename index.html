@@ -440,6 +440,141 @@
       filter: saturate(1.08);
     }
 
+
+    .travel-section {
+      background: linear-gradient(145deg, #f8efe8 0%, #fff9f5 56%, #e7f0ea 100%);
+    }
+
+    .travel-intro {
+      max-width: 740px;
+      margin-bottom: 42px;
+      color: rgba(26, 20, 18, .72);
+      font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.7;
+    }
+
+    .travel-timeline {
+      display: grid;
+      gap: 22px;
+    }
+
+    .travel-entry {
+      display: grid;
+      grid-template-columns: minmax(155px, .28fr) minmax(0, 1fr);
+      gap: clamp(20px, 4vw, 42px);
+      align-items: start;
+      border: 1px solid rgba(26, 20, 18, .1);
+      border-radius: 14px;
+      padding: clamp(20px, 4vw, 36px);
+      background: rgba(255, 250, 246, .82);
+      box-shadow: 0 18px 50px rgba(22, 13, 10, .08);
+    }
+
+    .travel-marker {
+      position: relative;
+      padding-left: 25px;
+    }
+
+    .travel-marker::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      bottom: -52px;
+      left: 3px;
+      width: 2px;
+      background: rgba(173, 51, 72, .25);
+    }
+
+    .travel-entry:last-child .travel-marker::before {
+      display: none;
+    }
+
+    .travel-marker::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: -2px;
+      width: 12px;
+      height: 12px;
+      border: 3px solid var(--paper);
+      border-radius: 50%;
+      background: var(--rose);
+      box-shadow: 0 0 0 1px var(--rose);
+    }
+
+    .travel-marker span {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .travel-marker h3 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(25px, 3vw, 36px);
+      font-weight: 400;
+      line-height: 1.05;
+    }
+
+    .travel-story {
+      margin: 0 0 18px;
+      color: rgba(26, 20, 18, .72);
+      line-height: 1.7;
+    }
+
+    .travel-photos {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .travel-photo {
+      position: relative;
+      display: block;
+      min-width: 0;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border: 0;
+      border-radius: 9px;
+      padding: 0;
+      background: #e8d8cf;
+      cursor: pointer;
+    }
+
+    .travel-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .35s ease;
+    }
+
+    .travel-photo:hover img {
+      transform: scale(1.045);
+    }
+
+    .travel-photo-fallback {
+      display: none;
+      position: absolute;
+      inset: 0;
+      place-items: center;
+      padding: 12px;
+      color: rgba(26, 20, 18, .7);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .travel-photo.is-unavailable img {
+      display: none;
+    }
+
+    .travel-photo.is-unavailable .travel-photo-fallback {
+      display: grid;
+    }
+
     .letter {
       background: var(--ink);
       color: #fffaf6;
@@ -659,8 +794,13 @@
     }
 
     @media (max-width: 980px) {
-      .nav a:not(:last-child) {
-        display: none;
+      .nav {
+        gap: 12px;
+        font-size: 12px;
+      }
+
+      .nav a {
+        white-space: nowrap;
       }
 
       .intro-grid,
@@ -685,6 +825,11 @@
     @media (max-width: 640px) {
       .topbar {
         padding: 14px 16px;
+      }
+
+      .nav {
+        gap: 8px;
+        font-size: 11px;
       }
 
       .brand span:last-child {
@@ -730,6 +875,19 @@
         min-height: 430px;
       }
 
+      .travel-entry {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .travel-marker::before {
+        bottom: -26px;
+      }
+
+      .travel-photos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .portrait-stack img {
         border-width: 7px;
       }
@@ -759,6 +917,7 @@
     <nav class="nav" aria-label="Sections">
       <a href="#letter">Letter</a>
       <a href="#gallery">Photos</a>
+      <a href="#travel">Travel</a>
     </nav>
   </header>
 
@@ -814,6 +973,19 @@
         </div>
 
         <div class="gallery" id="photoGrid" aria-label="Photo gallery"></div>
+      </div>
+    </section>
+
+    <section class="section travel-section" id="travel">
+      <div class="section-inner">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Our travel diary</p>
+            <h2>Places feel better together.</h2>
+          </div>
+        </div>
+        <p class="travel-intro">A little timeline of the places we’ve explored together—from faraway streets to weekend trips closer to home.</p>
+        <div class="travel-timeline" id="travelTimeline" aria-label="Travel photo timeline"></div>
       </div>
     </section>
 
@@ -876,6 +1048,40 @@
       { src: "assets/photos/16-dessert-hair.jpg", caption: "Dessert and hair moment" }
     ];
 
+    const travelEntries = [
+      {
+        period: "Aug–Sep 2026",
+        title: "China & Korea",
+        story: "A long trip, new places, and all the little moments we got to share along the way.",
+        photos: [
+          { src: "assets/photos/20260904_185949.JPG", caption: "A little stop on our China and Korea trip" },
+          { src: "assets/photos/20260913_114242.JPG", caption: "A memory from our time in Korea" },
+          { src: "assets/photos/IMG_8073.HEIC", caption: "A moment from the trip" },
+          { src: "assets/photos/IMG_8188.JPG", caption: "A moment from the trip" },
+          { src: "assets/photos/IMG_8254.HEIC", caption: "A moment from the trip" },
+          { src: "assets/photos/IMG_8450.HEIC", caption: "A moment from the trip" },
+          { src: "assets/photos/IMG_8783.HEIC", caption: "A moment from the trip" }
+        ]
+      },
+      {
+        period: "Australia",
+        title: "Canberra",
+        story: "A change of scenery, a few new corners to explore, and another trip to remember together.",
+        photos: [
+          { src: "assets/photos/IMG_9628.HEIC", caption: "A Canberra travel memory" },
+          { src: "assets/photos/IMG_9632.HEIC", caption: "A Canberra travel memory" }
+        ]
+      },
+      {
+        period: "Australia",
+        title: "Melbourne",
+        story: "Good food, wandering around, and another city we got to experience side by side.",
+        photos: [
+          { src: "assets/photos/IMG_9832.PNG", caption: "A Melbourne travel memory" }
+        ]
+      }
+    ];
+
     const tracks = [
       { title: "像晴天像雨天", file: "music/xiang-qing-tian-xiang-yu-tian.mp3", notes: [261.63, 392, 523.25] }
     ];
@@ -883,6 +1089,7 @@
     const topbar = document.getElementById("topbar");
     const heroBg = document.getElementById("heroBg");
     const photoGrid = document.getElementById("photoGrid");
+    const travelTimeline = document.getElementById("travelTimeline");
     const lightbox = document.getElementById("lightbox");
     const lightboxImage = document.getElementById("lightboxImage");
     const lightboxCaption = document.getElementById("lightboxCaption");
@@ -927,14 +1134,62 @@
       photoGrid.appendChild(fragment);
     }
 
-    function openLightbox(index) {
-      const photo = photos[index];
+    function showLightbox(photo) {
       lightboxImage.src = photo.src;
       lightboxImage.alt = photo.caption;
       lightboxCaption.textContent = photo.caption;
       lightbox.classList.add("is-open");
       lightbox.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
+    }
+
+    function openLightbox(index) {
+      showLightbox(photos[index]);
+    }
+
+    function buildTravelTimeline() {
+      travelEntries.forEach(entry => {
+        const article = document.createElement("article");
+        article.className = "travel-entry";
+
+        const marker = document.createElement("div");
+        marker.className = "travel-marker";
+        marker.innerHTML = `<span>${entry.period}</span><h3>${entry.title}</h3>`;
+
+        const content = document.createElement("div");
+        const story = document.createElement("p");
+        story.className = "travel-story";
+        story.textContent = entry.story;
+
+        const gallery = document.createElement("div");
+        gallery.className = "travel-photos";
+
+        entry.photos.forEach(photo => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "travel-photo";
+          button.setAttribute("aria-label", `Open photo: ${photo.caption}`);
+
+          const img = document.createElement("img");
+          img.src = photo.src;
+          img.alt = photo.caption;
+          img.loading = "lazy";
+          img.decoding = "async";
+          img.addEventListener("error", () => button.classList.add("is-unavailable"), { once: true });
+
+          const fallback = document.createElement("span");
+          fallback.className = "travel-photo-fallback";
+          fallback.textContent = "This photo format may not display in this browser.";
+
+          button.append(img, fallback);
+          button.addEventListener("click", () => showLightbox(photo));
+          gallery.appendChild(button);
+        });
+
+        content.append(story, gallery);
+        article.append(marker, content);
+        travelTimeline.appendChild(article);
+      });
     }
 
     function closeLightbox() {
@@ -1062,6 +1317,7 @@
     });
 
     buildGallery();
+    buildTravelTimeline();
     buildTracks();
     updateTopbar();
     window.addEventListener("load", () => {
