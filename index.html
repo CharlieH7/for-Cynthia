@@ -575,6 +575,22 @@
       display: grid;
     }
 
+
+    /* A scrapbook feel for the travel diary */
+    .travel-entry { border-radius: 20px; border-color: #e7d2c9; background: #fffcf8; box-shadow: 0 14px 42px rgba(94,50,43,.09); scroll-margin-top: 90px; }
+    .travel-marker h3 { color: #70313f; }
+    .travel-subtitle { font-family: Georgia,serif; font-style: italic; color: #ad3348; font-size: 20px; margin: 0 0 14px; }
+    .travel-story { font-size: 16px; line-height: 1.9; }
+    .travel-photos { grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap: 16px; }
+    .travel-photo { aspect-ratio: 4 / 5; background: white; border: 7px solid white; border-bottom-width: 25px; border-radius: 4px; box-shadow: 0 9px 22px rgba(42,23,18,.17); transform: rotate(-1deg); transition: transform .25s, box-shadow .25s; }
+    .travel-photo:nth-child(even) { transform: rotate(2deg); }
+    .travel-photo:hover, .travel-photo:nth-child(even):hover { transform: translateY(-5px); box-shadow: 0 14px 30px rgba(42,23,18,.23); }
+    .travel-empty { display: inline-block; padding: 12px 17px; border: 1px dashed #ce9aa3; border-radius: 12px; background: #fff4f3; color: #875665; font-size: 14px; }
+    .travel-jump { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 32px; }
+    .travel-jump a { padding: 9px 15px; border: 1px solid #dcb5b6; border-radius: 999px; background: #fff9f6; color: #762d3d; font-size: 13px; font-weight: 700; }
+    .travel-jump a:hover { background: #f6dedf; }
+    @media (max-width: 640px) { .travel-photos { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; } .travel-photo { border-width: 5px; border-bottom-width: 20px; } }
+
     .letter {
       background: var(--ink);
       color: #fffaf6;
@@ -985,6 +1001,7 @@
           </div>
         </div>
         <p class="travel-intro">A little timeline of the places we’ve explored together—from faraway streets to weekend trips closer to home.</p>
+        <nav class="travel-jump" id="travelJump" aria-label="Travel chapters"></nav>
         <div class="travel-timeline" id="travelTimeline" aria-label="Travel photo timeline"></div>
       </div>
     </section>
@@ -1050,37 +1067,72 @@
 
     const travelEntries = [
       {
-        period: "Aug–Sep 2026",
-        title: "China & Korea",
-        story: "A long trip, new places, and all the little moments we got to share along the way.",
-        photos: [
-          { src: "assets/photos/20260904_185949.JPG", caption: "A little stop on our China and Korea trip" },
-          { src: "assets/photos/20260913_114242.JPG", caption: "A memory from our time in Korea" },
-          { src: "assets/photos/china.jpg", caption: "A moment from the trip" },
-          { src: "assets/photos/IMG_8188.JPG", caption: "A moment from the trip" },
-          { src: "assets/photos/IMG_8254.jpg", caption: "A moment from the trip" },
-          { src: "assets/photos/IMG_8450.jpg", caption: "A moment from the trip" },
-          { src: "assets/photos/IMG_8783.jpg", caption: "A moment from the trip" }
-        ]
+            "period": "August – September 2026",
+            "title": "China · 中國",
+            "subtitle": "Our big adventure",
+            "story": "Dear diary — We traded ordinary days for new streets, delicious food and the excitement of discovering somewhere together. From busy city lights to quiet moments, these are memories I want to keep forever. ♡",
+            "photos": [
+                  {
+                        "src": "assets/photos/china.jpg",
+                        "caption": "China · 中國 — a photo from our travels"
+                  },
+                  {
+                        "src": "assets/photos/china.JPG",
+                        "caption": "China · 中國 — a photo from our travels"
+                  }
+            ]
       },
       {
-        period: "Australia",
-        title: "Canberra",
-        story: "A change of scenery, a few new corners to explore, and another trip to remember together.",
-        photos: [
-          { src: "assets/photos/IMG_9628.jpg", caption: "A Canberra travel memory" },
-          { src: "assets/photos/IMG_9632.jpg", caption: "A Canberra travel memory" }
-        ]
+            "period": "September 2026 · China",
+            "title": "Shanghai Disneyland · 上海迪士尼",
+            "subtitle": "A little bit of magic",
+            "story": "Dear diary — Some days feel like stepping into a storybook. Disneyland was one of those days: colourful sights, a little magic and the best person by my side.",
+            "photos": [
+                  {
+                        "src": "assets/photos/shanghai_disney.jpg",
+                        "caption": "Shanghai Disneyland · 上海迪士尼 — a photo from our travels"
+                  }
+            ]
       },
       {
-        period: "Australia",
-        title: "Melbourne",
-        story: "Good food, wandering around, and another city we got to experience side by side.",
-        photos: [
-          { src: "assets/photos/IMG_9832.PNG", caption: "A Melbourne travel memory" }
-        ]
+            "period": "September 2026",
+            "title": "South Korea · 韓國",
+            "subtitle": "Seoul and our little moments",
+            "story": "Dear diary — Another country, another chapter. We wandered, found food and collected small moments together. The best part was never just where we went, but who I was with.",
+            "photos": [
+                  {
+                        "src": "assets/photos/korea.jpg",
+                        "caption": "South Korea · 韓國 — a photo from our travels"
+                  }
+            ]
+      },
+      {
+            "period": "Australia · Sydney",
+            "title": "Bondi · 邦代海灘",
+            "subtitle": "A day by the sea",
+            "story": "Dear diary — Not every adventure needs a plane ticket. Sometimes all it takes is the ocean, fresh air and a lovely day together.",
+            "photos": [
+                  {
+                        "src": "assets/photos/bondi2.jpg",
+                        "caption": "Bondi · 邦代海灘 — a photo from our travels"
+                  }
+            ]
+      },
+      {
+            "period": "Australia · Our adventures",
+            "title": "Canberra · 坎培拉",
+            "subtitle": "A little getaway",
+            "story": "Dear diary — A different city, new corners to explore, and another chapter of our story. A page saved for our Canberra memories.",
+            "photos": []
+      },
+      {
+            "period": "Australia · Our adventures",
+            "title": "Melbourne · 墨爾本",
+            "subtitle": "Another city together",
+            "story": "Dear diary — More city streets, favourite meals and little moments worth remembering. A page saved for our Melbourne adventure.",
+            "photos": []
       }
-    ];
+];
 
     const tracks = [
       { title: "像晴天像雨天", file: "music/xiang-qing-tian-xiang-yu-tian.mp3", notes: [261.63, 392, 523.25] }
@@ -1148,47 +1200,61 @@
     }
 
     function buildTravelTimeline() {
-      travelEntries.forEach(entry => {
+      const jump = document.getElementById("travelJump");
+      travelEntries.forEach((entry, index) => {
+        const id = "travel-chapter-" + (index + 1);
+        const link = document.createElement("a");
+        link.href = "#" + id;
+        link.textContent = entry.title.split(" · ")[0];
+        jump.appendChild(link);
         const article = document.createElement("article");
         article.className = "travel-entry";
-
+        article.id = id;
         const marker = document.createElement("div");
         marker.className = "travel-marker";
-        marker.innerHTML = `<span>${entry.period}</span><h3>${entry.title}</h3>`;
-
+        const period = document.createElement("span");
+        period.textContent = "Chapter " + String(index + 1).padStart(2, "0") + " · " + entry.period;
+        const title = document.createElement("h3");
+        title.textContent = entry.title;
+        marker.append(period, title);
         const content = document.createElement("div");
+        const subtitle = document.createElement("p");
+        subtitle.className = "travel-subtitle";
+        subtitle.textContent = entry.subtitle;
         const story = document.createElement("p");
         story.className = "travel-story";
         story.textContent = entry.story;
-
-        const gallery = document.createElement("div");
-        gallery.className = "travel-photos";
-
-        entry.photos.forEach(photo => {
-          const button = document.createElement("button");
-          button.type = "button";
-          button.className = "travel-photo";
-          button.setAttribute("aria-label", `Open photo: ${photo.caption}`);
-
-          const img = document.createElement("img");
-          img.src = photo.src;
-          img.alt = photo.caption;
-          img.loading = "lazy";
-          img.decoding = "async";
-          img.addEventListener("error", () => button.classList.add("is-unavailable"), { once: true });
-
-          const fallback = document.createElement("span");
-          fallback.className = "travel-photo-fallback";
-          fallback.textContent = "This photo format may not display in this browser.";
-
-          button.append(img, fallback);
-          button.addEventListener("click", () => {
-            if (!button.classList.contains("is-unavailable")) showLightbox(photo);
+        content.append(subtitle, story);
+        if (entry.photos.length) {
+          const gallery = document.createElement("div");
+          gallery.className = "travel-photos";
+          entry.photos.forEach(photo => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "travel-photo";
+            button.setAttribute("aria-label", "Open photo: " + photo.caption);
+            const img = document.createElement("img");
+            img.src = photo.src;
+            img.alt = photo.caption;
+            img.loading = "lazy";
+            img.decoding = "async";
+            img.addEventListener("error", () => button.classList.add("is-unavailable"), { once: true });
+            const fallback = document.createElement("span");
+            fallback.className = "travel-photo-fallback";
+            fallback.textContent = "Photo currently unavailable";
+            button.append(img, fallback);
+            button.addEventListener("click", () => {
+              if (!button.classList.contains("is-unavailable")) showLightbox(photo);
+            });
+            gallery.appendChild(button);
           });
-          gallery.appendChild(button);
-        });
-
-        content.append(story, gallery);
+          content.appendChild(gallery);
+        } else {
+          const note = document.createElement("p");
+          note.className = "travel-empty";
+          note.textContent = "♡ Photos for this chapter are coming soon";
+          content.appendChild(note);
+        }
         article.append(marker, content);
         travelTimeline.appendChild(article);
       });
