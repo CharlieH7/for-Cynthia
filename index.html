@@ -146,24 +146,6 @@
       color: #fffaf6;
     }
 
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      z-index: -3;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 34%;
-      opacity: 1;
-      transform: scale(1.03);
-      transition: opacity 900ms ease, transform 4200ms ease;
-    }
-
-    .hero-bg.is-fading {
-      opacity: 0;
-      transform: scale(1.07);
-    }
-
     .hero::after {
       content: "";
       position: absolute;
@@ -251,22 +233,6 @@
       color: #fffaf6;
       background: rgba(255, 250, 246, .1);
       backdrop-filter: blur(14px);
-    }
-
-    .film-strip {
-      width: min(780px, 100%);
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 8px;
-    }
-
-    .film-strip img {
-      width: 100%;
-      aspect-ratio: 1;
-      object-fit: cover;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 250, 246, .42);
-      box-shadow: 0 18px 42px rgba(0, 0, 0, .3);
     }
 
     .section {
@@ -902,11 +868,6 @@
         width: 100%;
       }
 
-      .film-strip {
-        grid-template-columns: repeat(5, 1fr);
-        gap: 5px;
-      }
-
       .section {
         padding: 56px 16px;
       }
@@ -946,6 +907,129 @@
         grid-template-columns: auto minmax(0, 1fr);
       }
     }
+    html { scroll-padding-top: 76px; }
+
+    .hero {
+      min-height: min(820px, 100svh);
+      align-items: center;
+      padding-bottom: 52px;
+      background: radial-gradient(ellipse at 78% 35%, #742e41, #2d1720 74%);
+    }
+
+    .hero::after { display: none; }
+
+    .hero-inner {
+      margin-inline: auto;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      align-items: center;
+      gap: clamp(24px, 5vw, 72px);
+    }
+
+    h1 { font-size: clamp(3.4rem, 9vw, 8.5rem); }
+
+    .hero-copy {
+      font-size: clamp(1.125rem, 2vw, 1.5rem);
+      font-weight: 500;
+      line-height: 1.65;
+    }
+
+    .hero-album {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      gap: clamp(6px, 1.2vw, 14px);
+      aspect-ratio: 6 / 5;
+      padding: clamp(6px, 1.2vw, 14px);
+      border: 1px solid #ffffff55;
+      border-radius: 16px;
+      background: #ffffff12;
+    }
+
+    .hero-album img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .hero-album img:first-child { grid-area: 1 / 1 / 3 / 3; }
+    .intro, .travel-section { background: #fff7f1; }
+    .gallery-section { background: #281820; }
+    .gallery-section .eyebrow, .letter .eyebrow, .finale .eyebrow { color: #ffd6c5; }
+    .section-head h2 { margin-bottom: 0; }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      columns: auto;
+      gap: clamp(9px, 1.6vw, 20px);
+    }
+
+    .photo-card {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      background: #3b252c;
+    }
+
+    .photo-card img { aspect-ratio: 4 / 3; }
+    .photo-card::after, .travel-marker::before { display: none; }
+
+    .photo-card span {
+      position: static;
+      padding: 10px 12px;
+      font-size: .875rem;
+      line-height: 1.4;
+      text-shadow: none;
+    }
+
+    .travel-marker span { font-size: .875rem; letter-spacing: .08em; }
+
+    .travel-photos {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(8px, 1.2vw, 14px);
+    }
+
+    .travel-photo, .travel-photo:nth-child(even) {
+      aspect-ratio: auto;
+      border: 1px solid #ecd6d0;
+      border-radius: 8px;
+      background: #fffdfa;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .travel-photo-image { flex: 0 0 auto; aspect-ratio: 4 / 3; }
+
+    .travel-photo-caption {
+      flex: 1 0 auto;
+      padding: 8px 10px;
+      font: 600 .875rem/1.4 system-ui, sans-serif;
+      white-space: normal;
+      text-align: left;
+    }
+
+    .finale { padding-bottom: 95px; }
+    :focus-visible { outline: 3px solid #e79c72; outline-offset: 3px; }
+
+    @media (max-width: 1000px) {
+      .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .portrait-stack { min-height: 440px; width: min(100%, 440px); justify-self: center; }
+    }
+
+    @media (max-width: 740px) {
+      .hero { min-height: auto; padding-top: 108px; }
+      .hero-inner { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+      .hero-album { width: min(100%, 540px); }
+      .gallery, .travel-photos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .travel-entry { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0s !important; }
+      .spark { animation-duration: 0s; }
+    }
   </style>
 </head>
 <body>
@@ -963,7 +1047,6 @@
 
   <main id="top">
     <section class="hero" aria-label="Cynthia hero">
-      <img class="hero-bg" id="heroBg" src="assets/photos/01-concert-lights.jpg" alt="City light with you" />
       <div class="hero-inner">
         <div>
           <p class="kicker">Charlie & Cynthia</p>
@@ -974,17 +1057,15 @@
             <button class="button ghost" type="button" id="heroPlay">Play the song</button>
           </div>
         </div>
-        <div class="film-strip" aria-label="Small memories">
-          <img src="assets/photos/04-pink-hoodie.jpg" alt="Cynthia walking in a pink hoodie" />
-          <img src="assets/photos/09-cake-table.jpg" alt="Cakes on the table with Cynthia" />
-          <img src="assets/photos/12-cap-smile.jpg" alt="Cynthia smiling under a cap" />
-          <img src="assets/photos/14-mirror-moment.jpg" alt="Cynthia at a mirror" />
-          <img src="assets/photos/13-hotpot-feast.jpg" alt="A hotpot feast" />
+        <div class="hero-album">
+          <img src="assets/photos/bondi_pic.jpg" alt="A day at Bondi" fetchpriority="high" />
+          <img src="assets/photos/hold_hands.jpg" alt="Holding hands" />
+          <img src="assets/photos/photo%20booth.JPG" alt="Photo booth memories" />
         </div>
       </div>
     </section>
 
-    <section class="section intro" id="letter">
+    <section class="section intro">
       <div class="section-inner intro-grid">
         <div>
           <p class="eyebrow">For my favorite person</p>
@@ -1030,7 +1111,7 @@
       </div>
     </section>
 
-    <section class="section letter">
+    <section class="section letter" id="letter">
       <div class="section-inner letter-wrap">
         <div class="letter-card">
           <p class="eyebrow">Dear Cynthia</p>
@@ -1062,7 +1143,7 @@
     <audio id="audioPlayer" preload="auto" autoplay src="music/xiang-qing-tian-xiang-yu-tian.mp3"></audio>
   </aside>
 
-  <div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true" inert>
     <button class="lightbox-close" type="button" id="lightboxClose" aria-label="Close photo">×</button>
     <figure>
       <img id="lightboxImage" src="assets/photos/melbourne.jpg?v=2" alt="" />
@@ -1072,6 +1153,17 @@
 
   <script>
     const photos = [
+      {"src":"assets/photos/Frango%E8%87%AA%E6%8B%8D.jpg","caption":"Frango selfie"},
+      {"src":"assets/photos/On_the_train.jpg","caption":"On the train"},
+      {"src":"assets/photos/Wang%20Leehom%20Concert.PNG","caption":"Wang Leehom concert"},
+      {"src":"assets/photos/dinner_at_campsie_after_physio.jpg","caption":"Dinner in Campsie after physio"},
+      {"src":"assets/photos/driving.jpg","caption":"Driving together"},
+      {"src":"assets/photos/eating%202.PNG","caption":"Sharing a meal"},
+      {"src":"assets/photos/eating.jpg","caption":"Something good to eat"},
+      {"src":"assets/photos/hold_hands.jpg","caption":"Holding hands"},
+      {"src":"assets/photos/photo%20booth.JPG","caption":"Photo booth"},
+      {"src":"assets/photos/%E5%B7%B4%E9%80%82%E5%B0%8F%E5%8E%A8.JPG","caption":"巴适小厨"},
+      {"src":"assets/photos/%E7%9D%A1%E8%A6%BA.jpg","caption":"A quiet moment"},
       { src: "assets/photos/melbourne.jpg?v=2", caption: "City light with you", wide: true },
       { src: "assets/photos/03-night-walk.jpg", caption: "Night walk, pink hoodie", tall: true },
       { src: "assets/photos/04-pink-hoodie.jpg", caption: "The little bear hat moment", tall: true },
@@ -1091,93 +1183,186 @@
 
     const travelEntries = [
       {
-            "period": "August – September 2026",
-            "title": "China · 中國",
-            "subtitle": "Our big adventure",
-            "story": "Dear diary — We traded ordinary days for new streets, delicious food and the excitement of discovering somewhere together. From busy city lights to quiet moments, these are memories I want to keep forever. ♡",
-            "photos": [
-                  {
-                        "src": "assets/photos/china.jpg",
-                        "caption": "China · 中國 — a photo from our travels"
-                  },
-                  {
-                        "src": "assets/photos/china.JPG",
-                        "caption": "China · 中國 — a photo from our travels"
-                  }
-            ]
+        "period": "August – September 2026",
+        "title": "China · 中國",
+        "subtitle": "Our big adventure",
+        "story": "Dear diary — We traded ordinary days for new streets, delicious food and the excitement of discovering somewhere together. From busy city lights to quiet moments, these are memories I want to keep forever. ♡",
+        "photos": [
+          {
+            "src": "assets/photos/china.jpg",
+            "caption": "China · 中國 — a photo from our travels"
+          },
+          {
+            "src": "assets/photos/china.JPG",
+            "caption": "China · 中國 — a photo from our travels"
+          },
+          {
+            "src": "assets/photos/On_the_way_to_ShanXi.jpg",
+            "caption": "On the way to Shanxi"
+          },
+          {
+            "src": "assets/photos/Train%20on%20the%20way%20to%20Tianjin.JPG",
+            "caption": "Train to Tianjin"
+          },
+          {
+            "src": "assets/photos/baby%20waiting%20for%20train%20in%20Shanghai.JPG",
+            "caption": "Waiting for the train in Shanghai"
+          },
+          {
+            "src": "assets/photos/%E4%B8%8A%E6%B5%B7%E5%B0%8F%E7%86%8A%E9%A4%A8.JPG",
+            "caption": "上海小熊館"
+          }
+        ]
       },
       {
-            "period": "September 2026 · China",
-            "title": "Shanghai Disneyland · 上海迪士尼",
-            "subtitle": "A little bit of magic",
-            "story": "Dear diary — Some days feel like stepping into a storybook. Disneyland was one of those days: colourful sights, a little magic and the best person by my side.",
-            "photos": [
-                  {
-                        "src": "assets/photos/shanghai_disney.jpg",
-                        "caption": "Shanghai Disneyland · 上海迪士尼 — a photo from our travels"
-                  }
-            ]
+        "period": "September 2026 · China",
+        "title": "Shanghai Disneyland · 上海迪士尼",
+        "subtitle": "A little bit of magic",
+        "story": "Dear diary — Some days feel like stepping into a storybook. Disneyland was one of those days: colourful sights, a little magic and the best person by my side.",
+        "photos": [
+          {
+            "src": "assets/photos/shanghai_disney.jpg",
+            "caption": "Shanghai Disneyland · 上海迪士尼 — a photo from our travels"
+          },
+          {
+            "src": "assets/photos/Disneyland.jpg",
+            "caption": "Disneyland together"
+          }
+        ]
       },
       {
-            "period": "September 2026",
-            "title": "South Korea · 韓國",
-            "subtitle": "Seoul and our little moments",
-            "story": "Dear diary — Another country, another chapter. We wandered, found food and collected small moments together. The best part was never just where we went, but who I was with.",
-            "photos": [
-                  {
-                        "src": "assets/photos/korea.jpg",
-                        "caption": "South Korea · 韓國 — a photo from our travels"
-                  }
-            ]
+        "period": "September 2026",
+        "title": "South Korea · 韓國",
+        "subtitle": "Seoul and our little moments",
+        "story": "Dear diary — Another country, another chapter. We wandered, found food and collected small moments together. The best part was never just where we went, but who I was with.",
+        "photos": [
+          {
+            "src": "assets/photos/korea.jpg",
+            "caption": "South Korea · 韓國 — a photo from our travels"
+          },
+          {
+            "src": "assets/photos/Korea_Walking.jpg",
+            "caption": "A walk in Korea"
+          },
+          {
+            "src": "assets/photos/%E9%9F%93%E5%9C%8B.JPG",
+            "caption": "Together in Korea"
+          }
+        ]
       },
       {
-            "period": "Australia · Sydney",
-            "title": "Bondi · 邦代海灘",
-            "subtitle": "A day by the sea",
-            "story": "Dear diary — Not every adventure needs a plane ticket. Sometimes all it takes is the ocean, fresh air and a lovely day together.",
-            "photos": [
-                  {
-                        "src": "assets/photos/bondi2.jpg",
-                        "caption": "Bondi · 邦代海灘 — a photo from our travels"
-                  }
-            ]
+        "period": "Australia · Sydney",
+        "title": "Bondi · 邦代海灘",
+        "subtitle": "A day by the sea",
+        "story": "Dear diary — Not every adventure needs a plane ticket. Sometimes all it takes is the ocean, fresh air and a lovely day together.",
+        "photos": [
+          {
+            "src": "assets/photos/bondi2.jpg",
+            "caption": "Bondi · 邦代海灘 — a photo from our travels"
+          },
+          {
+            "src": "assets/photos/bondi_pic.jpg",
+            "caption": "A day at Bondi"
+          }
+        ]
       },
       {
-            "period": "Australia · Our adventures",
-            "title": "Canberra · 坎培拉",
-            "subtitle": "Her first singles tournament — and a win",
-            "story": "Dear diary — You played table tennis singles for the very first time in Canberra, and came away with the win. I was so proud watching you compete. Celebrating that first singles victory together made this trip unforgettable. ♡",
-            "photos": [
-                  {
-                        "src": "assets/photos/canberra.jpg",
-                        "caption": "A little moment together in Canberra"
-                  },
-                  {
-                        "src": "assets/photos/bb first tournament in canberra.JPG",
-                        "caption": "Your first table tennis singles tournament — and a Canberra win"
-                  }
-            ]
+        "period": "Australia",
+        "title": "Sydney · 悉尼",
+        "photos": [
+          {
+            "src": "assets/photos/La_Parouse.jpg",
+            "caption": "La Perouse"
+          },
+          {
+            "src": "assets/photos/Mascot%E8%BB%8A%E7%AB%99%E8%87%AA%E6%8B%8D.jpg",
+            "caption": "Mascot Station selfie"
+          },
+          {
+            "src": "assets/photos/Sydney.PNG",
+            "caption": "Together in Sydney"
+          }
+        ]
       },
       {
-            "period": "Australia · Our adventures",
-            "title": "Melbourne · 墨爾本",
-            "subtitle": "Melbourne after dark",
-            "story": "Dear diary — City lights, a beautiful view and another night out together. It is the little moments beside you that make every city feel special.",
-            "photos": [
-                  {
-                        "src": "assets/photos/melbourne.jpg?v=2",
-                        "caption": "City light with you"
-                  }
-            ]
+        "period": "Australia · Our adventures",
+        "title": "Canberra · 坎培拉",
+        "subtitle": "Her first singles tournament — and a win",
+        "story": "Dear diary — You played table tennis singles for the very first time in Canberra, and came away with the win. I was so proud watching you compete. Celebrating that first singles victory together made this trip unforgettable. ♡",
+        "photos": [
+          {
+            "src": "assets/photos/canberra.jpg",
+            "caption": "A little moment together in Canberra"
+          },
+          {
+            "src": "assets/photos/bb first tournament in canberra.JPG",
+            "caption": "Your first table tennis singles tournament — and a Canberra win"
+          },
+          {
+            "src": "assets/photos/Canberra_Ovolo%E6%B5%B4%E5%AE%A4%E5%90%88%E5%BD%B1.jpg",
+            "caption": "Mirror selfie at Ovolo"
+          },
+          {
+            "src": "assets/photos/Canberra%E4%B9%92%E4%B9%93%E7%90%83%E6%AF%94%E8%B3%BD%E5%A5%AA%E5%86%A0.JPG",
+            "caption": "Celebrating your table tennis win"
+          }
+        ]
+      },
+      {
+        "period": "Australia · Our adventures",
+        "title": "Melbourne · 墨爾本",
+        "subtitle": "Melbourne after dark",
+        "story": "Dear diary — City lights, a beautiful view and another night out together. It is the little moments beside you that make every city feel special.",
+        "photos": [
+          {
+            "src": "assets/photos/melbourne.jpg?v=2",
+            "caption": "City light with you"
+          },
+          {
+            "src": "assets/photos/Pullman_Albert_Park_Hotel_Melbourne.jpg",
+            "caption": "Pullman Melbourne Albert Park"
+          },
+          {
+            "src": "assets/photos/melbourne_kiss.jpg",
+            "caption": "A kiss in Melbourne"
+          },
+          {
+            "src": "assets/photos/melbourne_kiss2.jpg",
+            "caption": "Another Melbourne moment"
+          },
+          {
+            "src": "assets/photos/melbourne_on_the_plane.jpg",
+            "caption": "Flying to Melbourne"
+          },
+          {
+            "src": "assets/photos/melbourne_zoo.jpg",
+            "caption": "Melbourne Zoo"
+          },
+          {
+            "src": "assets/photos/resting_with_capybara.jpg",
+            "caption": "Resting with a capybara"
+          },
+          {
+            "src": "assets/photos/selfie_otw_to_melbourne.jpg",
+            "caption": "On the way to Melbourne"
+          },
+          {
+            "src": "assets/photos/%E5%A2%A8%E7%88%BE%E6%9C%AC%E6%97%A9%E9%A4%90.JPG",
+            "caption": "Breakfast in Melbourne"
+          },
+          {
+            "src": "assets/photos/%E5%A2%A8%E7%88%BE%E6%9C%AC%E9%A3%9B%E6%A9%9F%E4%B8%8A%E5%90%88%E5%BD%B1.JPG",
+            "caption": "Together on the plane"
+          }
+        ]
       }
-];
+    ];
 
     const tracks = [
       { title: "像晴天像雨天", file: "music/xiang-qing-tian-xiang-yu-tian.mp3", notes: [261.63, 392, 523.25] }
     ];
 
     const topbar = document.getElementById("topbar");
-    const heroBg = document.getElementById("heroBg");
     const photoGrid = document.getElementById("photoGrid");
     const travelTimeline = document.getElementById("travelTimeline");
     const lightbox = document.getElementById("lightbox");
@@ -1191,7 +1376,7 @@
     const audioPlayer = document.getElementById("audioPlayer");
     const sealButton = document.getElementById("sealButton");
 
-    let heroIndex = 0;
+    let activePhotoButton;
     let currentTrack = 0;
     let isPlaying = false;
     let audioContext;
@@ -1201,23 +1386,13 @@
       topbar.classList.toggle("is-scrolled", window.scrollY > 24);
     }
 
-    function rotateHero() {
-      heroIndex = (heroIndex + 1) % photos.length;
-      heroBg.classList.add("is-fading");
-      window.setTimeout(() => {
-        heroBg.src = photos[heroIndex].src;
-        heroBg.alt = photos[heroIndex].caption;
-        heroBg.classList.remove("is-fading");
-      }, 520);
-    }
-
     function buildGallery() {
       const fragment = document.createDocumentFragment();
       photos.forEach((photo, index) => {
         const button = document.createElement("button");
         button.type = "button";
         button.className = `photo-card${photo.wide ? " wide" : ""}${photo.tall ? " tall" : ""}`;
-        button.innerHTML = `<img src="${photo.src}" alt="${photo.caption}" decoding="async"><span>${photo.caption}</span>`;
+        button.innerHTML = `<img src="${photo.src}" alt="" loading="lazy" decoding="async"><span>${photo.caption}</span>`;
         button.addEventListener("click", () => openLightbox(index));
         fragment.appendChild(button);
       });
@@ -1225,12 +1400,15 @@
     }
 
     function showLightbox(photo) {
+      activePhotoButton = document.activeElement;
+      lightbox.inert = false;
       lightboxImage.src = photo.src;
       lightboxImage.alt = photo.caption;
       lightboxCaption.textContent = photo.caption;
       lightbox.classList.add("is-open");
       lightbox.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
+      lightboxClose.focus();
     }
 
     function openLightbox(index) {
@@ -1251,7 +1429,7 @@
         const marker = document.createElement("div");
         marker.className = "travel-marker";
         const period = document.createElement("span");
-        period.textContent = "Chapter " + String(index + 1).padStart(2, "0") + " · " + entry.period;
+        period.textContent = entry.period;
         const title = document.createElement("h3");
         title.textContent = entry.title;
         marker.append(period, title);
@@ -1262,7 +1440,8 @@
         const story = document.createElement("p");
         story.className = "travel-story";
         story.textContent = entry.story;
-        content.append(subtitle, story);
+        if (entry.subtitle) content.appendChild(subtitle);
+        if (entry.story) content.appendChild(story);
         if (entry.photos.length) {
           const gallery = document.createElement("div");
           gallery.className = "travel-photos";
@@ -1305,6 +1484,9 @@
     }
 
     function closeLightbox() {
+      if (!lightbox.classList.contains("is-open")) return;
+      activePhotoButton?.focus();
+      lightbox.inert = true;
       lightbox.classList.remove("is-open");
       lightbox.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
@@ -1411,13 +1593,14 @@
     }
 
     window.addEventListener("scroll", updateTopbar, { passive: true });
-    window.setInterval(rotateHero, 4400);
     lightboxClose.addEventListener("click", closeLightbox);
     lightbox.addEventListener("click", event => {
       if (event.target === lightbox) closeLightbox();
     });
     document.addEventListener("keydown", event => {
+      if (!lightbox.classList.contains("is-open")) return;
       if (event.key === "Escape") closeLightbox();
+      if (event.key === "Tab") event.preventDefault();
     });
     musicToggle.addEventListener("click", () => {
       isPlaying ? pauseMusic() : playMusic();
