@@ -283,38 +283,25 @@
     }
 
     .portrait-stack {
-      position: relative;
-      min-height: 590px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+      gap: clamp(10px, 2vw, 22px);
     }
 
     .portrait-stack img {
-      position: absolute;
-      width: 68%;
-      max-width: 360px;
-      object-fit: cover;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: contain;
+      background: #fffaf6;
       border: 10px solid #fffaf6;
       border-radius: 8px;
       box-shadow: var(--shadow);
+      transform: rotate(-3deg);
     }
 
-    .portrait-stack img:nth-child(1) {
-      top: 0;
-      right: 0;
-      aspect-ratio: 3 / 4;
-      transform: rotate(2deg);
-    }
-
-    .portrait-stack img:nth-child(2) {
-      left: 0;
-      top: 190px;
-      aspect-ratio: 4 / 5;
-      transform: rotate(-4deg);
-    }
-
-    .portrait-stack img:nth-child(3) {
-      right: 9%;
-      bottom: 0;
-      aspect-ratio: 1;
+    .portrait-stack img + img {
+      margin-top: clamp(16px, 4vw, 45px);
       transform: rotate(3deg);
     }
 
@@ -814,10 +801,6 @@
         grid-template-columns: 1fr;
       }
 
-      .portrait-stack {
-        min-height: 500px;
-      }
-
       .section-head {
         display: block;
       }
@@ -870,10 +853,6 @@
 
       .section {
         padding: 56px 16px;
-      }
-
-      .portrait-stack {
-        min-height: 430px;
       }
 
       .travel-entry {
@@ -1049,7 +1028,7 @@
 
     @media (max-width: 1000px) {
       .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .portrait-stack { min-height: 440px; width: min(100%, 440px); justify-self: center; }
+      .portrait-stack { width: min(100%, 440px); justify-self: center; }
     }
 
     @media (max-width: 740px) {
@@ -1112,7 +1091,6 @@
           </div>
         </div>
         <div class="portrait-stack" aria-hidden="true">
-          <img src="assets/photos/06-morning-mirror.jpg" alt="" />
           <img src="assets/photos/07-sweet-face.jpg" alt="" />
           <img src="assets/photos/16-dessert-hair.jpg" alt="" />
         </div>
