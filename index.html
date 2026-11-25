@@ -1141,7 +1141,7 @@
             <h2>Places feel better together.</h2>
           </div>
         </div>
-        <p class="travel-intro">A little timeline of the places we’ve explored together—from faraway streets to weekend trips closer to home.</p>
+        <p class="travel-intro">A little timeline of our trips and nights out together, from faraway streets to concerts closer to home.</p>
         <nav class="travel-jump" id="travelJump" aria-label="Travel chapters"></nav>
         <div class="travel-timeline" id="travelTimeline" aria-label="Travel photo timeline"></div>
       </div>
@@ -1359,6 +1359,39 @@
             "caption": "Together on the plane"
           }
         ]
+      },
+      {
+        "id": "jay-chou-concert",
+        "period": "21 November 2026",
+        "title": "Jay Chou Concert · 周杰倫演唱會",
+        "subtitle": "A night of music together",
+        "story": "Dear diary — On 21 November, we went to see Jay Chou together. I love that these photos take me right back to that night with you. ♡",
+        "photos": [
+          {
+            "src": "assets/photos/jay%20chou%20concert%20photo%20tgt.JPG",
+            "caption": "Together at the Jay Chou concert"
+          },
+          {
+            "src": "assets/photos/jay%20chou%20concert.jpg",
+            "caption": "The concert from our seats"
+          },
+          {
+            "src": "assets/photos/jay%20chou.jpg",
+            "caption": "Jay Chou on stage"
+          },
+          {
+            "src": "assets/photos/jay%20chou%20concert%20photo%20of%20baby.JPG",
+            "caption": "Cynthia at the concert"
+          },
+          {
+            "src": "assets/photos/%E5%81%B7%E6%8B%8D%E5%AF%B6%E8%B2%9D.jpg",
+            "caption": "Cynthia filming the show"
+          },
+          {
+            "src": "assets/photos/jay%20chou%20concert%20photo%20kissing.jpg",
+            "caption": "A kiss at the concert"
+          }
+        ]
       }
     ];
 
@@ -1460,7 +1493,7 @@
     function buildTravelTimeline() {
       const jump = document.getElementById("travelJump");
       travelEntries.forEach((entry, index) => {
-        const id = "travel-chapter-" + (index + 1);
+        const id = entry.id || "travel-chapter-" + (index + 1);
         const link = document.createElement("a");
         link.href = "#" + id;
         link.textContent = entry.title.split(" · ")[0];
