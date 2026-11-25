@@ -972,7 +972,10 @@
       background: #3b252c;
     }
 
-    .photo-card img { aspect-ratio: 4 / 3; }
+    .photo-card img { aspect-ratio: 4 / 3; object-fit: cover; }
+    .photo-card.wide { grid-column: span 2; }
+    .photo-card.wide img { aspect-ratio: 16 / 9; }
+    .photo-card.tall img { aspect-ratio: 3 / 4; }
     .photo-card::after, .travel-marker::before { display: none; }
 
     .photo-card span {
@@ -1178,7 +1181,14 @@
       { src: "assets/photos/13-hotpot-feast.jpg", caption: "A whole feast for two", wide: true },
       { src: "assets/photos/14-mirror-moment.jpg", caption: "Mirror movie moment", tall: true },
       { src: "assets/photos/15-haidilao-menu.jpg", caption: "Menu boss at Haidilao", tall: true },
-      { src: "assets/photos/16-dessert-hair.jpg", caption: "Dessert and hair moment" }
+      { src: "assets/photos/16-dessert-hair.jpg", caption: "Dessert and hair moment" },
+      { src: "assets/photos/Disneyland.jpg", caption: "A little magic in Shanghai", wide: true },
+      { src: "assets/photos/On_the_way_to_ShanXi.jpg", caption: "On the way to Shanxi", tall: true },
+      { src: "assets/photos/Korea_Walking.jpg", caption: "A walk together in Korea", tall: true },
+      { src: "assets/photos/Canberra%E4%B9%92%E4%B9%93%E7%90%83%E6%AF%94%E8%B3%BD%E5%A5%AA%E5%86%A0.JPG", caption: "Celebrating your Canberra table tennis win", wide: true },
+      { src: "assets/photos/melbourne_kiss.jpg", caption: "A kiss in Melbourne", tall: true },
+      { src: "assets/photos/melbourne_zoo.jpg", caption: "A day at Melbourne Zoo" },
+      { src: "assets/photos/La_Parouse.jpg", caption: "A day at La Perouse", wide: true }
     ];
 
     const travelEntries = [
@@ -1190,10 +1200,6 @@
         "photos": [
           {
             "src": "assets/photos/china.jpg",
-            "caption": "China · 中國 — a photo from our travels"
-          },
-          {
-            "src": "assets/photos/china.JPG",
             "caption": "China · 中國 — a photo from our travels"
           },
           {
@@ -1392,7 +1398,7 @@
         const button = document.createElement("button");
         button.type = "button";
         button.className = `photo-card${photo.wide ? " wide" : ""}${photo.tall ? " tall" : ""}`;
-        button.innerHTML = `<img src="${photo.src}" alt="" loading="lazy" decoding="async"><span>${photo.caption}</span>`;
+        button.innerHTML = `<img src="${photo.src}" alt="${photo.caption}" loading="lazy" decoding="async"><span>${photo.caption}</span>`;
         button.addEventListener("click", () => openLightbox(index));
         fragment.appendChild(button);
       });
